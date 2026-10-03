@@ -6,6 +6,7 @@
 radius = 5.0990195
 
 [node name="Player" type="CharacterBody2D" unique_id=217802643]
+collision_layer = 0
 script = ExtResource("1_41wu2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1181528564]

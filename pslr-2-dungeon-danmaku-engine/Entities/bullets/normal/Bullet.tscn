@@ -20,5 +20,6 @@ texture = ExtResource("1_yhxbw")
 shape = SubResource("CircleShape2D_y3fcc")
 
 [node name="TTL" type="Timer" parent="." unique_id=1548195517]
+wait_time = 5.0
 
 [connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
