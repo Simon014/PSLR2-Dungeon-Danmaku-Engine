@@ -5,8 +5,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3fcc"]
 
-[node name="split bullet" type="CharacterBody2D" unique_id=625293210]
-collision_layer = 0
+[node name="Bullet" type="CharacterBody2D" unique_id=625293210]
+collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_p7bxx")
 

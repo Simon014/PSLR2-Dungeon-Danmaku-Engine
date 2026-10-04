@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dmcsko740rpui"]
+
+[ext_resource type="Script" uid="uid://i8ef5tbosjct" path="res://Entities/partner/PartnerController.gd" id="1_v2yy7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lu2sr"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v2yy7"]
+radius = 33.0
+
+[node name="Partner" type="CharacterBody2D" unique_id=617075088]
+collision_layer = 0
+script = ExtResource("1_v2yy7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1555643880]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+color = Color(0, 0.77452236, 0.8364265, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=797326791]
+shape = SubResource("CircleShape2D_lu2sr")
+
+[node name="ATKCD" type="Timer" parent="." unique_id=741478550]
+wait_time = 0.05
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=407124321]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1959405446]
+shape = SubResource("CircleShape2D_v2yy7")
+
+[node name="Dodge" type="Timer" parent="." unique_id=1984128201]
+wait_time = 0.05
+autostart = true
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="timeout" from="Dodge" to="." method="_on_dodge_timeout"]

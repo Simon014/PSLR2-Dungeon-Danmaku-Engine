@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 corePlayerVars="*uid://byhtsmq4va0oo"
+corePartnerVars="*uid://dp50cooxrwpwk"
 
 [input]
 

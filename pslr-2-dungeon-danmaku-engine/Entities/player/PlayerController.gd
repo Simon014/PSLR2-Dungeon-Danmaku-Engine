@@ -4,6 +4,8 @@ func attack():
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.speed = corePlayerVars.attackspeed
 	bullet.damage = corePlayerVars.attack * 10
+	bullet.split = 4
+	bullet.TTL = 2
 	bullet.direction = position.direction_to(get_global_mouse_position())
 	bullet.position = position
 	get_parent().add_child(bullet)
