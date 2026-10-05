@@ -4,10 +4,15 @@ func attack():
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.speed = corePlayerVars.attackspeed
 	bullet.damage = corePlayerVars.attack * 10
-	bullet.split = 4
+	bullet.split = 10
 	bullet.TTL = 2
 	bullet.direction = position.direction_to(get_global_mouse_position())
 	bullet.position = position
+	var splitter = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
+	splitter.name = "splitter"
+	splitter.acceleration = -10
+	splitter.TTL = 5
+	bullet.splitinto = splitter
 	get_parent().add_child(bullet)
 	pass
 

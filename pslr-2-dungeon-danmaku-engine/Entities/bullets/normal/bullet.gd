@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-var damage = 10
-var speed = 100
+@export var damage = 10
+@export var speed = 100
 var direction
-var TTL = 5
-var friction = 0
-var acceleration = 0
+@export var TTL = 5
+@export var friction = 0
+@export var acceleration = 0
 
 
 
