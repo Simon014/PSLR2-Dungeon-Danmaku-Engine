@@ -7,7 +7,7 @@ var Health = 100
 var SP = 100
 var SPmax = SP * 1.5
 var speed = 200
-var position
+var position = Vector2.ZERO
 #combat stats
 var attack = 1
 var defence = 1

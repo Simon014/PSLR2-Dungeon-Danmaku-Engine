@@ -17,13 +17,4 @@ offset_right = 546.96875
 offset_bottom = 194.89897
 
 [node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
-position = Vector2(468, 229)
-
-[node name="Partner2" parent="." unique_id=640699986 instance=ExtResource("3_y8vh0")]
-position = Vector2(711, 241)
-
-[node name="Partner3" parent="." unique_id=678231191 instance=ExtResource("3_y8vh0")]
-position = Vector2(596, 112)
-
-[node name="Partner4" parent="." unique_id=1784029682 instance=ExtResource("3_y8vh0")]
-position = Vector2(562, 387)
+position = Vector2(809, 306)

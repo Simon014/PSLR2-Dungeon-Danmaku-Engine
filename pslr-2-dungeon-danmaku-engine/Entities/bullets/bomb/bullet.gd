@@ -12,7 +12,6 @@ var direction
 
 #changed variables
 var scales
-var currentarea
 
 
 
@@ -24,8 +23,6 @@ func _ready() -> void:
 	$TTL.start()
 	$explode.scale.x = scales/100
 	$explode.scale.y = scales/100
-	currentarea = $CollisionShape2D.shape.radius
-	print(currentarea)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01
@@ -38,9 +35,10 @@ func _on_ttl_timeout() -> void:
 	$Image.visible = false
 	$AnimationPlayer.play("explode")
 	$CollisionShape2D.shape.radius = explosionRadius
-	currentarea = $CollisionShape2D.shape.radius
 	pass # Replace with function body.
 
+func currentarea():
+	return $CollisionShape2D.shape.radius
 func _on_animation_player_current_animation_changed(name: StringName) -> void:
 	if name == "":
 		queue_free()
