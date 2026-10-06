@@ -1,22 +1,18 @@
 extends CharacterBody2D
 
 func attack():
-	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
-	bullet.TTL = 2
-	bullet.speed = corePlayerVars.attackspeed
-	bullet.damage = corePlayerVars.attack
-	bullet.split = 36
+
 	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
-	splitter.explosionRadius = 30
+	splitter.explosionRadius = 3000
 	splitter.explosionDamage = 0.7
 	splitter.TTL = 3
-	splitter.speed = corePlayerVars.attackspeed * 5
+	splitter.speed = corePlayerVars.attackspeed
 	splitter.damage = corePlayerVars.attack 
-	splitter.acceleration = -5
-	bullet.splitinto = splitter
-	bullet.direction = position.direction_to(get_global_mouse_position())
-	bullet.position = position
-	get_parent().add_child(bullet)
+	splitter.friction = 1
+
+	splitter.direction = position.direction_to(get_global_mouse_position())
+	splitter.position = position
+	get_parent().add_child(splitter)
 	pass
 
 func _input(event: InputEvent) -> void:
