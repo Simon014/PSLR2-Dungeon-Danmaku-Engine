@@ -27,6 +27,11 @@ func _on_dodge_timeout() -> void:
 				queue_free()
 			elif position.distance_to(i.position) < 20:
 				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
+		if (i.name.contains("Bomb")):
+			if position.distance_to(i.position) < i.currentarea:
+				queue_free()
+			elif position.distance_to(i.position) < i.explosionRadius:
+				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
 	movementvector = movementvector.normalized()
 	velocity = movementvector.normalized() * corePartnerVars.speed 
 	pass # Replace with function body.
