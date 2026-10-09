@@ -6,7 +6,7 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2yy7"]
-radius = 33.0
+radius = 61.008198
 
 [node name="Partner" type="CharacterBody2D" unique_id=617075088]
 collision_layer = 0
@@ -33,7 +33,7 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1959405446]
 shape = SubResource("CircleShape2D_v2yy7")
 
-[node name="Dodge" type="Timer" parent="." unique_id=1984128201]
+[node name="Tick" type="Timer" parent="." unique_id=1984128201]
 wait_time = 0.05
 autostart = true
 
@@ -43,4 +43,4 @@ one_shot = true
 
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="timeout" from="Dodge" to="." method="_on_dodge_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -12,3 +12,8 @@ var position = Vector2.ZERO
 var attack = 1
 var defence = 1
 var attackspeed = 300
+#effect data
+var PoisonRemaining = 0
+var SlowRemaining = 0
+var DefLowerRemaining = 0
+var AtkLowerRemaining = 0

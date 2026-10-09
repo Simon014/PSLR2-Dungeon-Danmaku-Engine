@@ -12,3 +12,8 @@ var position
 var attack = 1
 var defence = 1
 var attackspeed = 100
+#effect data
+var PoisonRemaining = 0
+var SlowRemaining = 0
+var DefLowerRemaining = 0
+var AtkLowerRemaining = 0

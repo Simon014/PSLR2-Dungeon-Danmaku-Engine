@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b8an3ssrc7e2f"]
+
+[ext_resource type="Script" uid="uid://b62nkiq2udgj3" path="res://Entities/bullets/effect/bullet.gd" id="1_d12r2"]
+[ext_resource type="Texture2D" uid="uid://ddcu5qbsqt1pd" path="res://Entities/bullets/DebugBullet.png" id="1_ylwm3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3fcc"]
+radius = 30.0
+
+[node name="Bullet" type="CharacterBody2D" unique_id=625293210]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_d12r2")
+
+[node name="DebugBullet" type="Sprite2D" parent="." unique_id=1973256255]
+modulate = Color(0.6745098, 0.43137255, 1, 0.37254903)
+position = Vector2(9.536743e-07, -9.536743e-07)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_ylwm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719758290]
+shape = SubResource("CircleShape2D_y3fcc")
+
+[node name="TTL" type="Timer" parent="." unique_id=1548195517]
+wait_time = 5.0
+
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
