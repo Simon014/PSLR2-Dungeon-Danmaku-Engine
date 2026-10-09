@@ -10,6 +10,10 @@ var direction
 #special configurations for this bullet
 @export var split = 4
 var splitinto
+#if you want to blow your computer up, be my guest. :3
+@export var secretrecurancesplit = false
+
+
 """
 TODO : ONCE ALL OTHER BULLETS ARE DONE, INCLUDING LAZERS, GO BACK AND MODIFY
 THIS TO TAKE AN ARRAY, basically a "make this bullet, with this configuration"
@@ -33,6 +37,14 @@ func _process(delta: float) -> void:
 func _on_ttl_timeout() -> void:
 	var anglechange = 360 / split
 	var currentangle = 0
+	if (secretrecurancesplit):
+		for i in range(split):
+			var splitter = self.duplicate() # good luck !
+			splitter.direction = Vector2.from_angle(deg_to_rad(currentangle))
+			splitter.position = position
+			get_parent().add_child(splitter)
+			currentangle += anglechange
+		queue_free()
 	if (splitinto):
 		for i in range(split):
 			var splitter = splitinto.duplicate()
