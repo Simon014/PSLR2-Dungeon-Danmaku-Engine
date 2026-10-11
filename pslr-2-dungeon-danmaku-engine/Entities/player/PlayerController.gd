@@ -7,7 +7,6 @@ func attack():
 	bullet.acceleration = 0.1
 	bullet.speed = 100
 	bullet.TTL = 0.05
-	bullet.secretrecurancesplit = true
 	bullet.direction = position.direction_to(get_global_mouse_position())
 	bullet.position = position
 	get_parent().add_child(bullet)
