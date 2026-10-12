@@ -17,3 +17,4 @@ var PoisonRemaining = 0
 var SlowRemaining = 0
 var DefLowerRemaining = 0
 var AtkLowerRemaining = 0
+var followdist = 400

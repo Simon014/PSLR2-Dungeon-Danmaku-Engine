@@ -1,14 +1,10 @@
 extends CharacterBody2D
 
 func attack():
-	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
-	bullet.speed = corePlayerVars.attackspeed
-	bullet.split = 3
-	bullet.acceleration = 0.1
-	bullet.speed = 100
-	bullet.TTL = 0.05
-	bullet.direction = position.direction_to(get_global_mouse_position())
+	var bullet = load("res://Entities/bullets/lazer/lazer.tscn").instantiate()
 	bullet.position = position
+	bullet.TTL = 0.2
+	bullet.direction = position.direction_to(get_global_mouse_position())
 	get_parent().add_child(bullet)
 	pass
 
