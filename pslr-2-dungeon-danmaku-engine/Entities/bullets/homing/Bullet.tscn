@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ceit01bcpag3c"]
 
 [ext_resource type="Script" uid="uid://b0n0s0gh71hdx" path="res://Entities/bullets/homing/bullet.gd" id="1_3gprq"]
-[ext_resource type="Texture2D" uid="uid://ddcu5qbsqt1pd" path="res://Entities/bullets/DebugBullet.png" id="2_n0c7q"]
+[ext_resource type="Texture2D" uid="uid://ddcu5qbsqt1pd" path="res://Entities/bullets/Images/DebugBullet.png" id="2_n0c7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3fcc"]
 
@@ -10,7 +10,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_3gprq")
 
-[node name="DebugBullet" type="Sprite2D" parent="." unique_id=1973256255]
+[node name="Image" type="Sprite2D" parent="." unique_id=1973256255]
 modulate = Color(0.6734647, 0.4300065, 1, 1)
 position = Vector2(0.23, 0)
 scale = Vector2(0.087890625, 0.087890625)

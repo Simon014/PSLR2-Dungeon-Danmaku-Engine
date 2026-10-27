@@ -11,6 +11,9 @@ extends CharacterBody2D
 var direction
 var scales
 
+@export var color = Color(0.709, 0.0, 0.574, 1.0)
+@export var image = "DebugBullet.png"
+
 
 #can be either poison, slow, defdown, atkdown
 func _ready() -> void:
@@ -20,8 +23,10 @@ func _ready() -> void:
 	$TTL.start()
 	$CollisionShape2D.shape.radius = effectRadius
 	scales = float(effectRadius)
-	$DebugBullet.scale.x = scales/100
-	$DebugBullet.scale.y = scales/100
+	$Image.scale.x = scales/100
+	$Image.scale.y = scales/100
+	modulate = color
+	$Image.texture = load("res://Entities/bullets/Images/" + image)
 	
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01

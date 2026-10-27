@@ -1,11 +1,15 @@
 extends CharacterBody2D
 
 func attack():
-	var bullet = load("res://Entities/bullets/lazer/lazer.tscn").instantiate()
+	var bullet = load("res://Entities/bullets/effect/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
-	bullet.direction = position.direction_to(corePartnerVars.position)
-	bullet.color = Color(255,255,0)
+	bullet.speed = 100
+	bullet.acceleration = 22
+	bullet.image = "DebugBullet2.png"
+	bullet.direction = position.direction_to(get_global_mouse_position())
+	bullet.color = Color(0.0, 0.726, 0.361, 1.0)
+
 	get_parent().add_child(bullet)
 	pass
 

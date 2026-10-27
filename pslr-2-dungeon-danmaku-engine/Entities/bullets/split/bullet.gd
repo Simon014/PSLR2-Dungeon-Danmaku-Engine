@@ -13,6 +13,9 @@ var splitinto
 #if you want to blow your computer up, be my guest. :3
 @export var secretrecurancesplit = false
 
+@export var color = Color(0.709, 0.0, 0.574, 1.0)
+@export var image = "DebugBullet.png"
+
 
 """
 TODO : ONCE ALL OTHER BULLETS ARE DONE, INCLUDING LAZERS, GO BACK AND MODIFY
@@ -27,6 +30,8 @@ func _ready() -> void:
 	velocity = direction * speed 
 	$TTL.wait_time = TTL
 	$TTL.start()
+	modulate = color
+	$Image.texture = load("res://Entities/bullets/Images/" + image)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01 

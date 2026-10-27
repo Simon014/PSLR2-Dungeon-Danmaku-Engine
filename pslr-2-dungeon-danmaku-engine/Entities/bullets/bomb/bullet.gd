@@ -9,6 +9,9 @@ var direction
 # special configurations
 @export var explosionRadius = 35
 @export var explosionDamage = 0.5
+#visual config
+@export var color = Color(0.709, 0.0, 0.574, 1.0)
+@export var image = "DebugBullet2.png"
 
 #changed variables
 var scales
@@ -23,6 +26,8 @@ func _ready() -> void:
 	$TTL.start()
 	$explode.scale.x = scales/100
 	$explode.scale.y = scales/100
+	modulate = color
+	$Image.texture = load("res://Entities/bullets/Images/" + image)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01

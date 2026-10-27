@@ -7,6 +7,8 @@ var direction
 @export var friction = 0
 @export var acceleration = 0
 
+@export var color = Color(0.709, 0.0, 0.574, 1.0)
+@export var image = "DebugBullet.png"
 
 
 func _ready() -> void:
@@ -14,6 +16,8 @@ func _ready() -> void:
 	velocity = direction * speed 
 	$TTL.wait_time = TTL
 	$TTL.start()
+	modulate = color
+	$Image.texture = load("res://Entities/bullets/Images/" + image)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01
