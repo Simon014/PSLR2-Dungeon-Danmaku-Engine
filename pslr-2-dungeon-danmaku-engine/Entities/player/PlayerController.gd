@@ -5,6 +5,7 @@ func attack():
 	bullet.position = position
 	bullet.TTL = 5
 	bullet.direction = position.direction_to(corePartnerVars.position)
+	bullet.color = Color(255,255,0)
 	get_parent().add_child(bullet)
 	pass
 

@@ -14,6 +14,7 @@ func _ready() -> void:
 	scale = Vector2(width,1)
 	name = "lazer"
 	$ColorRect.color = color
+	$ColorRect.color.a = 0.2
 	$TTL.start()
 	$TTLWARN.wait_time = warningtime
 	$TTLWARN.start()
@@ -26,7 +27,8 @@ func _on_ttl_timeout() -> void:
 
 
 func _on_ttlwarn_timeout() -> void:
-	$ColorRect.color = Color(255,255,255,1)
+	$ColorRect.color = color
+	$ColorRect.color.a = 1
 	pass # Replace with function body.
 	
 func isactive():
