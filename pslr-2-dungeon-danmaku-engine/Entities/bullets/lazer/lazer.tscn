@@ -2,42 +2,6 @@
 
 [ext_resource type="Script" uid="uid://btogcw64vb6d5" path="res://Entities/bullets/lazer/lazer.gd" id="1_8kuny"]
 
-[sub_resource type="Animation" id="Animation_7d5bh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_8kuny"]
-resource_name = "shoot"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color:a")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(2.2973874, 0.15932012),
-"update": 0,
-"values": [0.0, 0.5]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pakwb"]
-_data = {
-&"RESET": SubResource("Animation_7d5bh"),
-&"shoot": SubResource("Animation_8kuny")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d5bh"]
 size = Vector2(40, 1049)
 
@@ -50,9 +14,7 @@ script = ExtResource("1_8kuny")
 offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 1049.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=910938473]
-libraries/ = SubResource("AnimationLibrary_pakwb")
+color = Color(1, 1, 1, 0)
 
 [node name="TTL" type="Timer" parent="." unique_id=2021760951]
 one_shot = true
@@ -61,4 +23,8 @@ one_shot = true
 position = Vector2(0, 524.5)
 shape = SubResource("RectangleShape2D_7d5bh")
 
+[node name="TTLWARN" type="Timer" parent="." unique_id=2041301145]
+one_shot = true
+
 [connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
+[connection signal="timeout" from="TTLWARN" to="." method="_on_ttlwarn_timeout"]

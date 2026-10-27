@@ -57,9 +57,7 @@ func _on_tick_timeout() -> void:
 				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
 		if (i.name.contains("lazer")):
 			var distToLazer = position.distance_to(i.position)*(asin(i.position.direction_to(position).angle() - i.direction.angle()))
-			print(distToLazer)
-			print(i.position.direction_to(position).angle() - i.direction.angle())
-			if (abs(distToLazer) < i.width * 20):
+			if ((abs(distToLazer) < i.width * 20) and i.isactive()):
 				$StunCD.start()
 			elif(i.position.direction_to(position).angle() - i.direction.angle() > 0):
 				movementvector += Vector2.from_angle(i.direction.angle() + PI/2)
@@ -67,6 +65,8 @@ func _on_tick_timeout() -> void:
 			elif(i.position.direction_to(position).angle() - i.direction.angle() < 0):
 				movementvector += Vector2.from_angle(i.direction.angle() - PI/2)
 				pass
+			else:
+				movementvector += Vector2.from_angle(i.direction.angle() - PI/2)
 			#calc direction and distance to origin
 			#calc perpendicular angle to lazer, from kemoko (and if needed, do it depending on where Kemoko is against the direction of the lazer.
 			#find the angle between the perpendicular and the origin, then calculate distance to lazer invisible line.

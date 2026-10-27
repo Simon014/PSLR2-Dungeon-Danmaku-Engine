@@ -3,8 +3,8 @@ extends CharacterBody2D
 func attack():
 	var bullet = load("res://Entities/bullets/lazer/lazer.tscn").instantiate()
 	bullet.position = position
-	bullet.TTL = 0.2
-	bullet.direction = position.direction_to(get_global_mouse_position())
+	bullet.TTL = 5
+	bullet.direction = position.direction_to(corePartnerVars.position)
 	get_parent().add_child(bullet)
 	pass
 
