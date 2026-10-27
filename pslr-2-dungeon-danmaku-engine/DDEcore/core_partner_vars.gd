@@ -8,6 +8,8 @@ var SP = 100
 var SPmax = SP * 1.5
 var speed = 200
 var position = Vector2.ZERO
+var followdist = 400
+
 #combat stats
 var attack = 1
 var defence = 1
@@ -17,4 +19,3 @@ var PoisonRemaining = 0
 var SlowRemaining = 0
 var DefLowerRemaining = 0
 var AtkLowerRemaining = 0
-var followdist = 400
