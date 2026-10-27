@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 corePlayerVars="*uid://byhtsmq4va0oo"
 corePartnerVars="*uid://dp50cooxrwpwk"
+coreGlobalConst="*uid://bdid8w2v6cxpw"
 
 [input]
 

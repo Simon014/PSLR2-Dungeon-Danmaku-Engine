@@ -5,8 +5,9 @@ func attack():
 	bullet.position = position
 	bullet.TTL = 5
 	bullet.speed = 100
-	bullet.acceleration = 22
+	bullet.acceleration = 0
 	bullet.image = "DebugBullet2.png"
+	bullet.effect = "poison"
 	bullet.direction = position.direction_to(get_global_mouse_position())
 	bullet.color = Color(0.0, 0.726, 0.361, 1.0)
 

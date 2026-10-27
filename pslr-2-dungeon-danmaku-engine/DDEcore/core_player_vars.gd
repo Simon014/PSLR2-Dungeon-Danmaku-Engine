@@ -4,6 +4,7 @@ extends Node
 # all player variables at that moment is written to and saved here.
 
 var Health = 100
+var maxhealth = 100
 var SP = 100
 var SPmax = SP * 1.5
 var speed = 400

@@ -29,7 +29,8 @@ func _ready() -> void:
 	$Image.texture = load("res://Entities/bullets/Images/" + image)
 	
 func _process(delta: float) -> void:
-	velocity -= velocity * friction * 0.01
+	velocity += direction * acceleration
+	velocity -= velocity * friction
 	move_and_slide()
 
 func _on_ttl_timeout() -> void:

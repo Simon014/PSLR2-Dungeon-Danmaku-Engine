@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var damage = 10
+@export var damage = 100
 var direction
 @export var TTL = 5
 @export var width = 0.25
