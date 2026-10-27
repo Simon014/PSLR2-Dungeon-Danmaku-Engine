@@ -23,7 +23,7 @@ color = Color(0, 0.77452236, 0.8364265, 1)
 shape = SubResource("CircleShape2D_lu2sr")
 
 [node name="ATKCD" type="Timer" parent="." unique_id=741478550]
-wait_time = 0.05
+wait_time = 0.5
 autostart = true
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=407124321]
@@ -41,6 +41,7 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
+[connection signal="timeout" from="ATKCD" to="." method="_on_atkcd_timeout"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -13,6 +13,7 @@ var scales
 
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
+@export var friendly = false
 
 
 #can be either poison, slow, defdown, atkdown

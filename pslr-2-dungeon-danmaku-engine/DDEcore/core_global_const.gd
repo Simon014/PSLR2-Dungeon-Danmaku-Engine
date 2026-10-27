@@ -10,4 +10,4 @@ var lowdef = 0.5
 var lowatk = 0.5
 
 var passiveheal = 5
-var partnerstunheal = 0.25
+var partnerstunheal = 0.5

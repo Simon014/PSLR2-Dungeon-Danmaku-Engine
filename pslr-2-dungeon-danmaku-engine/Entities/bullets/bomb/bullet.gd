@@ -15,6 +15,7 @@ var direction
 
 #changed variables
 var scales
+@export var friendly = false
 
 
 

@@ -15,7 +15,7 @@ var splitinto
 
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
-
+@export var friendly = false
 
 """
 TODO : ONCE ALL OTHER BULLETS ARE DONE, INCLUDING LAZERS, GO BACK AND MODIFY
@@ -55,14 +55,17 @@ func _on_ttl_timeout() -> void:
 			var splitter = splitinto.duplicate()
 			splitter.direction = Vector2.from_angle(deg_to_rad(currentangle))
 			splitter.position = position
+			splitter.friendly = friendly
 			get_parent().add_child(splitter)
 			currentangle += anglechange
+			
 		queue_free()
 	else:
 		for i in range(split):
 			var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
 			bullet.direction = Vector2.from_angle(deg_to_rad(currentangle))
 			bullet.position = position
+			bullet.friendly = friendly
 			get_parent().add_child(bullet)
 			currentangle += anglechange
 		queue_free()
