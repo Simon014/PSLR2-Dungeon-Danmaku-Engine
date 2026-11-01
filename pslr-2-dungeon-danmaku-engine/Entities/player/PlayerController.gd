@@ -11,7 +11,9 @@ func attack():
 	bullet.split = 8
 	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
+	bullet.friendly = true
 	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
+	splitter.friendly = true
 	splitter.speed = 300
 	splitter.acceleration = -1
 	splitter.TTL = 2
