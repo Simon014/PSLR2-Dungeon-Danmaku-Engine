@@ -7,7 +7,7 @@ var direction
 @export var friction = 0
 @export var acceleration = 0
 
-@export var color = Color(0.709, 0.0, 0.574, 1.0)
+@export var color = Color(1.0, 1.0, 1.0, 1.0)
 @export var image = "DebugBullet.png"
 
 @export var friendly = false

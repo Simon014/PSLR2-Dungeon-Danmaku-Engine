@@ -9,7 +9,7 @@ var direction
 
 #special configurations for this bullet
 @export var split = 4
-var splitinto
+@export var splitinto = null
 #if you want to blow your computer up, be my guest. :3
 @export var secretrecurancesplit = false
 

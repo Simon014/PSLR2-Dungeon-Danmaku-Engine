@@ -1,17 +1,25 @@
 extends CharacterBody2D
 
+var attackhandler = coreDungeonEngine.AttackHandler.new()
+
 func attack():
-	var bullet = load("res://Entities/bullets/effect/Bullet.tscn").instantiate()
+	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
 	bullet.speed = 100
-	bullet.acceleration = 0
+	bullet.acceleration = 0.1
+	bullet.split = 4
+	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
-	bullet.effect = "poison"
+	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
+	splitter.speed = 100
+	splitter.acceleration = 5
+	splitter.TTL = 20
+	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
+	splitter.image = "DebugBullet2.png"
+	bullet.splitinto = splitter
 	bullet.direction = position.direction_to(get_global_mouse_position())
-	bullet.color = Color(0.0, 0.726, 0.361, 1.0)
-
-	get_parent().add_child(bullet)
+	attackhandler.CSAttackFull(self,position,bullet,100,func(x): return 1/tan(x) * 1/sin(99*x),30, corePlayerVars.position)
 	pass
 
 func _input(event: InputEvent) -> void:
