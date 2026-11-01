@@ -6,20 +6,20 @@ func attack():
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
-	bullet.speed = 100
+	bullet.speed = 0
 	bullet.acceleration = 0.1
-	bullet.split = 4
+	bullet.split = 8
 	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
-	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
-	splitter.speed = 100
-	splitter.acceleration = 5
-	splitter.TTL = 20
+	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
+	splitter.speed = 300
+	splitter.acceleration = -1
+	splitter.TTL = 2
 	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
 	splitter.image = "DebugBullet2.png"
 	bullet.splitinto = splitter
 	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.CSAttackFull(self,position,bullet,100,func(x): return 1/tan(x) * 1/sin(99*x),30, corePlayerVars.position)
+	attackhandler.CSAttackFull(self,position,bullet,100,func(x): return 1/pow(x,1/2) * tan(x),10)
 	pass
 
 func _input(event: InputEvent) -> void:

@@ -3,6 +3,8 @@ extends Node
 class AttackHandler:
 	static func CSAttackFull(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type, Bullet_number: int, Function: Callable, Multiplier: int, AimToPosition = null):
 		for i in range(-Bullet_number, Bullet_number):
+			if i == 0:
+				i += 1
 			var NewPosition = Vector2(Position.x - i*Multiplier,Position.y - Function.call(i)*Multiplier )
 			var NewBullet = Bullet_Type.duplicate()
 			NewBullet.position = NewPosition

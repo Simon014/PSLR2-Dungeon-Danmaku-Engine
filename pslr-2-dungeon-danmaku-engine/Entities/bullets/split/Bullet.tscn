@@ -7,7 +7,7 @@
 
 [node name="Bullet" type="CharacterBody2D" unique_id=625293210]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_p7bxx")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=1973256255]
