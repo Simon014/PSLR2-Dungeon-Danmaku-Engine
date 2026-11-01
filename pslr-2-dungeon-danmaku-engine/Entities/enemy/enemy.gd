@@ -10,7 +10,7 @@ var atk = 10
 var health = 100
 var atkspeed = 100
 var Maxhealth = 100
-
+var attackhandler = coreDungeonEngine.AttackHandler.new()
 
 var PoisonRemaining = 0
 var SlowRemaining = 0
