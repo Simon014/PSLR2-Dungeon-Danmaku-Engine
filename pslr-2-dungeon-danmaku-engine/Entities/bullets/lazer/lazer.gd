@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 @export var damage = 100
-var direction
-@export var TTL = 5
+@export var direction = Vector2.DOWN
+@export var TTL = 8
 @export var width = 0.25
-@export var warningtime = 1
+@export var warningtime = 4
 @export var color = Color(255,255,255,0.2)
+
+var friendly
 
 func _ready() -> void:
 	rotate(direction.angle() - PI/2)

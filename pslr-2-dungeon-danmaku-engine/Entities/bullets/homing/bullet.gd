@@ -40,9 +40,21 @@ func _on_ttl_timeout() -> void:
 func _on_pathing_timeout() -> void:
 	timeSinceload += 0.05
 	if timeSinceload > Pathstart:
-
-		if(position.distance_to(corePlayerVars.position) > position.distance_to(corePartnerVars.position)):
-			velocity += position.direction_to(corePartnerVars.position) * PathInfluence * acceleration
+		if not friendly:
+			if(position.distance_to(corePlayerVars.position) > position.distance_to(corePartnerVars.position)):
+				velocity += position.direction_to(corePartnerVars.position) * PathInfluence * acceleration
+			else:
+				velocity += position.direction_to(corePlayerVars.position) * PathInfluence * acceleration
 		else:
-			velocity += position.direction_to(corePlayerVars.position) * PathInfluence * acceleration
+			var closestposition = null
+			var closestdist = 10000
+			for i in get_parent().get_children():
+				if i.name.contains("Enemy"):
+					if position.distance_to(i.position) < closestdist:
+						closestdist = position.distance_to(i.position)
+						closestposition = i.position
+			if closestposition:
+				velocity += position.direction_to(closestposition) * PathInfluence * acceleration
+			else:
+				queue_free() #will only happen if there are NO enemies avaliable.
 	pass # Replace with function body.

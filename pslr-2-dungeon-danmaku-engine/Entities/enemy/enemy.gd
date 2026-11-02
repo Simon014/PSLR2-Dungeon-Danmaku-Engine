@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 	frametime = delta
 
 func _on_tick_timeout() -> void:
-	print(health)
 	if (health < 0):
 		isdead = true
 		health = 0

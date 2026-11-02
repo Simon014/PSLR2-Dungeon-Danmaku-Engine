@@ -2,26 +2,30 @@ extends CharacterBody2D
 
 var attackhandler = coreDungeonEngine.AttackHandler.new()
 
+#attack iterating stats. saved locally.
+var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
+var AttackCounter = -10
+var TimeSinceLastAttack = 0
+
 func attack():
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
 	bullet.speed = 0
 	bullet.acceleration = 0.1
-	bullet.split = 8
+	bullet.split = 4
 	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
 	bullet.friendly = true
-	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
+	var splitter = load("res://Entities/bullets/lazer/lazer.tscn").instantiate()
 	splitter.friendly = true
-	splitter.speed = 300
-	splitter.acceleration = -1
-	splitter.TTL = 2
+	splitter.TTL = 10
 	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
-	splitter.image = "DebugBullet2.png"
+	splitter.direction = Vector2.DOWN
 	bullet.splitinto = splitter
 	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.CSAttackFull(self,position,bullet,100,func(x): return 1/pow(x,1/2) * tan(x),10)
+	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter,func(x): return 1/pow(x,1/2) * 1/tan(x),10)
+	AttackCounter += 1
 	pass
 
 func _input(event: InputEvent) -> void:
