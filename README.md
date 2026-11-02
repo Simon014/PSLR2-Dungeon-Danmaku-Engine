@@ -1,3 +1,5 @@
+![alt text](https://github.com/Simon014/PSLR2-Dungeon-Danmaku-Engine/blob/main/pslr-2-dungeon-danmaku-engine/logo.png)
+
 A script engine for the planned PSLR2 game.
 
 This is a combination of both pokemon mystery dungeon 2, and Touhou project. This would have scripts for the dungeons, bullet hell, cutscenes, items and the like.
