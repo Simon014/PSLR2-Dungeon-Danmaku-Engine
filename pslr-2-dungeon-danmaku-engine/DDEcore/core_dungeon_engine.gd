@@ -36,3 +36,40 @@ class AttackHandler:
 		
 		pass
 		
+	#Direction attack : inputted function outputs the direction of the bullet.
+	func DRAttackFull(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type, start: int, end: int, Function: Callable):
+		for i in range(start, end):
+			var newbullet = Bullet_Type.duplicate()
+			newbullet.direction = Vector2.from_angle(deg_to_rad(Function.call(i)))
+			newbullet.position = Position
+			executorObject.get_parent().add_child(newbullet)
+			pass
+		pass
+	
+	func DRattackIterate(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type, input: int, Function: Callable):
+		var newbullet = Bullet_Type.duplicate()
+		newbullet.direction = Vector2.from_angle(deg_to_rad(Function.call(input)))
+		newbullet.position = Position
+		executorObject.get_parent().add_child(newbullet)
+		pass
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

@@ -25,21 +25,21 @@ func attack():
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
-	bullet.speed = 0
+	bullet.speed = 100
 	bullet.acceleration = 0.1
 	bullet.split = 4
 	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
-	bullet.friendly = true
+	bullet.friendly = false
 	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
-	splitter.friendly = true
+	splitter.friendly = false
 	splitter.TTL = 10
 	splitter.damage = 100
 	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
 	splitter.direction = Vector2.DOWN
 	bullet.splitinto = splitter
 	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter - TotalBullets/2,func(x): return 1/pow(x,1/2) * 1/cos(2*x),10)
+	attackhandler.DRattackIterate(self, position, bullet, AttackCounter, func(x): return x * 10)
 	AttackCounter += 1
 	pass
 
@@ -94,7 +94,7 @@ func _on_atkcd_timeout() -> void:
 	if AttackIterating != 0:
 		attack()
 	for i in $DetectionArea.get_overlapping_bodies():
-		if (i.friendly == false):
+		if (i.friendly == true):
 			if (i.name.contains("Bullet")):
 				if position.distance_to(i.position) < 10:
 					i.queue_free()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://qpp2q3t74mg3" path="res://debug.gd" id="1_03604"]
 [ext_resource type="PackedScene" uid="uid://cgtr8wu6fmp36" path="res://Entities/player/Player.tscn" id="1_vw6t8"]
-[ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
+[ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vh0"]
 size = Vector2(62, 756)
@@ -67,14 +67,5 @@ offset_bottom = 717.101
 position = Vector2(21, 368)
 shape = SubResource("RectangleShape2D_y8vh0")
 
-[node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
-position = Vector2(285, 482)
-
-[node name="Enemy2" parent="." unique_id=295681734 instance=ExtResource("4_p6tge")]
-position = Vector2(436, 127)
-
-[node name="Enemy3" parent="." unique_id=300880787 instance=ExtResource("4_p6tge")]
-position = Vector2(772, 550)
-
-[node name="Enemy4" parent="." unique_id=83090348 instance=ExtResource("4_p6tge")]
-position = Vector2(981, 91)
+[node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
+position = Vector2(658, 489)
