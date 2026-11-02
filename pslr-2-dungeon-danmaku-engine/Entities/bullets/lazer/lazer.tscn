@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://r6gfk2tnng3l"]
+
+[ext_resource type="Script" uid="uid://btogcw64vb6d5" path="res://Entities/bullets/lazer/lazer.gd" id="1_8kuny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7d5bh"]
+size = Vector2(40, 1049)
+
+[node name="lazer" type="CharacterBody2D" unique_id=182749396]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_8kuny")
+color = Color(254.99997, 254.99997, 254.99997, 0.2)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=810013909]
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 1049.0
+color = Color(1, 1, 1, 0)
+
+[node name="TTL" type="Timer" parent="." unique_id=2021760951]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500123138]
+position = Vector2(0, 524.5)
+shape = SubResource("RectangleShape2D_7d5bh")
+
+[node name="TTLWARN" type="Timer" parent="." unique_id=2041301145]
+one_shot = true
+
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
+[connection signal="timeout" from="TTLWARN" to="." method="_on_ttlwarn_timeout"]

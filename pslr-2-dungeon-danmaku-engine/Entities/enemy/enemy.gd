@@ -1,0 +1,138 @@
+extends CharacterBody2D
+
+var movementvector
+var frametime
+var isdead
+
+#combat info
+var defence = 10
+var atk = 10
+var health = 100
+var atkspeed = 100
+var Maxhealth = 100
+var attackhandler = coreDungeonEngine.AttackHandler.new()
+
+var PoisonRemaining = 0
+var SlowRemaining = 0
+var DefLowerRemaining = 0
+var AtkLowerRemaining = 0
+
+#attack iterating stats. saved locally.
+var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
+var AttackCounter = 0
+var TotalBullets = 0
+
+func attackIterate():
+	AttackIterating = 1
+	TotalBullets = 10
+	AttackCounter = 0
+	pass
+
+func _ready() -> void:
+	pass
+	#this function will load current dungeon variables in RAM. for now it does nothing.
+
+func attack():
+	if AttackIterating != 0:
+		if AttackCounter == TotalBullets:
+			AttackIterating = 0
+			return
+	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
+	bullet.position = position
+	bullet.TTL = 5
+	bullet.speed = 0
+	bullet.acceleration = 0.1
+	bullet.split = 4
+	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
+	bullet.image = "DebugBullet2.png"
+	bullet.friendly = false
+	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
+	splitter.friendly = false
+	splitter.TTL = 3
+	
+	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
+	splitter.direction = Vector2.DOWN
+	bullet.splitinto = splitter
+	bullet.direction = position.direction_to(get_global_mouse_position())
+	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter - TotalBullets/2,func(x): return 1/pow(x,1/2) * 1/cos(2*x),10)
+	AttackCounter += 1
+	pass
+	
+func _on_atkcd_timeout() -> void:
+	if AttackIterating == 0:
+		attackIterate()
+	pass # Replace with function body.d
+		
+func _process(delta: float) -> void:
+	frametime = delta
+
+func _on_tick_timeout() -> void:
+	if AttackIterating != 0:
+		attack()
+	if (health < 0):
+		isdead = true
+		health = 0
+		PoisonRemaining = 0
+		queue_free()
+	else:
+		if (health < Maxhealth):
+			health += coreGlobalConst.passiveheal * frametime
+		else:
+			health = Maxhealth #clamp to max health
+	if (PoisonRemaining > 0):
+		PoisonRemaining -= 1
+		health -= coreGlobalConst.poisonpower * frametime
+
+			
+	if (SlowRemaining > 0):
+		SlowRemaining -= 1
+		
+	if (AtkLowerRemaining > 0):
+		AtkLowerRemaining -= 1
+		atk = attack * coreGlobalConst.lowatk
+	else:
+		atk = attack
+		
+	if (DefLowerRemaining > 0):
+		DefLowerRemaining -= 1
+		defence = defence * coreGlobalConst.lowdef
+	else:
+		defence = defence
+		
+	for i in $DetectionArea.get_overlapping_bodies():
+		if (i.friendly == true):
+			if (i.name.contains("Bullet")):
+				if position.distance_to(i.position) < 10:
+					i.queue_free()
+					if (not isdead):
+						health -= i.damage	* (100-defence)/100
+			if (i.name.contains("Effect")):
+				if (not isdead):
+					if (position.distance_to(i.position) < i.effectRadius):
+						if (i.effect == "poison"):
+							PoisonRemaining = i.effectDuration
+						if (i.effect == "speed down"):
+							SlowRemaining = i.effectDuration
+						if (i.effect == "lower defence"):
+							DefLowerRemaining = i.effectDuration
+						if (i.effect == "lower attack"):
+							AtkLowerRemaining = i.effectDuration
+				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
+			if (i.name.contains("Bomb")):
+				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == false:
+					i.queue_free()
+					if (not isdead):
+						health -= i.damage * i.explosionDamage	* (100-defence)/100
+				elif position.distance_to(i.position) < 10:
+					i.queue_free()
+					if (not isdead):
+						health -= i.damage	* (100-defence)/100
+			if (i.name.contains("lazer")):
+				var distToLazer = position.distance_to(i.position)*(asin(i.position.direction_to(position).angle() - i.direction.angle()))
+				if ((abs(distToLazer) < i.width * 20) and i.isactive()):
+					if (not isdead):
+						health -= i.damage * frametime	* (100-defence)/100
+			else:
+				
+				pass
+	pass # Replace with function body.

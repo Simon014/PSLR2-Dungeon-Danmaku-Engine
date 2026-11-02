@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://plarhlsmydmo"]
+
+[ext_resource type="Script" uid="uid://bystr51qvwuyn" path="res://Entities/enemy/enemy.gd" id="1_r7hwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spuc2"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7hwg"]
+radius = 61.008198
+
+[node name="Enemy" type="CharacterBody2D" unique_id=76727699]
+collision_layer = 0
+script = ExtResource("1_r7hwg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1841251827]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+color = Color(1, 0.4598899, 0.8191352, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216137350]
+shape = SubResource("CircleShape2D_spuc2")
+
+[node name="ATKCD" type="Timer" parent="." unique_id=1274192410]
+wait_time = 0.5
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1307690405]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=358850755]
+shape = SubResource("CircleShape2D_r7hwg")
+
+[node name="Tick" type="Timer" parent="." unique_id=549217632]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="ATKCD" to="." method="_on_atkcd_timeout"]
+[connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cgtr8wu6fmp36"]
+
+[ext_resource type="Script" uid="uid://dwyxv6qi88xxj" path="res://Entities/player/PlayerController.gd" id="1_41wu2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mq5ly"]
+radius = 8.062258
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_psduu"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D" unique_id=217802643]
+collision_layer = 0
+script = ExtResource("1_41wu2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1181528564]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+color = Color(0.84420544, 0.5846574, 0.47363442, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=35716798]
+shape = SubResource("CircleShape2D_mq5ly")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=271191928]
+
+[node name="ATKCD" type="Timer" parent="." unique_id=1412916431]
+wait_time = 0.05
+autostart = true
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=2066477246]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1141911868]
+shape = SubResource("CircleShape2D_psduu")
+
+[connection signal="timeout" from="ATKCD" to="." method="_on_atkcd_timeout"]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://ch6h3a8bn7ah"]
+
+[ext_resource type="Script" uid="uid://bnxxbfwyltulk" path="res://Entities/bullets/bomb/bullet.gd" id="1_g7i7g"]
+[ext_resource type="Texture2D" uid="uid://ddcu5qbsqt1pd" path="res://Entities/bullets/Images/DebugBullet.png" id="2_hxb1k"]
+[ext_resource type="Texture2D" uid="uid://cfb2d2f7f8fix" path="res://Entities/bullets/Images/DebugBullet2.png" id="2_pfyvt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y3fcc"]
+
+[sub_resource type="Animation" id="Animation_g7i7g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explode:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.7137255]
+}
+
+[sub_resource type="Animation" id="Animation_hxb1k"]
+resource_name = "explode"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explode:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6666667),
+"transitions": PackedFloat32Array(0.1538931, 1),
+"update": 0,
+"values": [0.7, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pfyvt"]
+_data = {
+&"RESET": SubResource("Animation_g7i7g"),
+&"explode": SubResource("Animation_hxb1k")
+}
+
+[node name="Bullet" type="CharacterBody2D" unique_id=625293210]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_g7i7g")
+color = Color(1, 1, 1, 1)
+
+[node name="Image" type="Sprite2D" parent="." unique_id=1973256255]
+position = Vector2(0.23, 0)
+scale = Vector2(0.087890625, 0.087890625)
+texture = ExtResource("2_pfyvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719758290]
+shape = SubResource("CircleShape2D_y3fcc")
+
+[node name="TTL" type="Timer" parent="." unique_id=1548195517]
+wait_time = 5.0
+
+[node name="explode" type="Sprite2D" parent="." unique_id=761841100]
+visible = false
+modulate = Color(0.86378443, 0.4660697, 1.1551381e-06, 0.7137255)
+position = Vector2(-5.722046e-06, 5.722046e-06)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_hxb1k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=828795856]
+libraries/ = SubResource("AnimationLibrary_pfyvt")
+
+[connection signal="timeout" from="TTL" to="." method="_on_ttl_timeout"]
+[connection signal="current_animation_changed" from="AnimationPlayer" to="." method="_on_animation_player_current_animation_changed"]
