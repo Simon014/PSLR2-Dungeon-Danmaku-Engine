@@ -4,10 +4,20 @@ var attackhandler = coreDungeonEngine.AttackHandler.new()
 
 #attack iterating stats. saved locally.
 var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
-var AttackCounter = -10
-var TimeSinceLastAttack = 0
+var AttackCounter = 0
+var TotalBullets = 10
+
+func attackIterate():
+	AttackIterating = 1
+	TotalBullets = 100
+	AttackCounter = 0
+	pass
 
 func attack():
+	if AttackIterating != 0:
+		if AttackCounter == TotalBullets:
+			AttackIterating = 0
+			return
 	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
 	bullet.position = position
 	bullet.TTL = 5
@@ -24,7 +34,7 @@ func attack():
 	splitter.direction = Vector2.DOWN
 	bullet.splitinto = splitter
 	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter,func(x): return 1/pow(x,1/2) * 1/tan(x),10)
+	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter - TotalBullets/2,func(x): return 1/pow(x,1/2) * 1/cos(2*x),10)
 	AttackCounter += 1
 	pass
 
@@ -32,6 +42,12 @@ func _input(event: InputEvent) -> void:
 	velocity = Input.get_vector("left", "right","up","down") * corePlayerVars.speed
 	if (Input.is_action_pressed("slowdown")):
 		velocity = velocity / 3
+	
+	if (Input.is_action_just_pressed("SPAttack1")):
+		if AttackIterating == 1:
+			pass
+		else:
+			attackIterate()
 	pass
 		
 func _process(delta: float) -> void:
@@ -40,6 +56,6 @@ func _process(delta: float) -> void:
 
 
 func _on_atkcd_timeout() -> void:
-	if (Input.is_action_pressed("shoot normal")):
+	if AttackIterating != 0:
 		attack()
 	pass # Replace with function body.

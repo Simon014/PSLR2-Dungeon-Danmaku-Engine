@@ -35,3 +35,4 @@ class AttackHandler:
 		#direction should be set automatically by the entity that called this function.
 		
 		pass
+		
