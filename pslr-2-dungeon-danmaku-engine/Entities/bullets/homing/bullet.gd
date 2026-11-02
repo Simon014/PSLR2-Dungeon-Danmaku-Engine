@@ -9,7 +9,6 @@ var direction
 
 #specific stuff
 @export var Pathstart = 4 #when to activating pathing processing. 0 to start immediately.
-@export var PathInfluence = 5 #how much the path should influence the bullet. 1 for full influence. 0 for no influence.
 
 #dynamic stuff
 var timeSinceload = 0.0
@@ -42,9 +41,9 @@ func _on_pathing_timeout() -> void:
 	if timeSinceload > Pathstart:
 		if not friendly:
 			if(position.distance_to(corePlayerVars.position) > position.distance_to(corePartnerVars.position)):
-				velocity += position.direction_to(corePartnerVars.position) * PathInfluence * acceleration
+				velocity += position.direction_to(corePartnerVars.position) * acceleration
 			else:
-				velocity += position.direction_to(corePlayerVars.position) * PathInfluence * acceleration
+				velocity += position.direction_to(corePlayerVars.position) * acceleration
 		else:
 			var closestposition = null
 			var closestdist = 10000
@@ -54,7 +53,7 @@ func _on_pathing_timeout() -> void:
 						closestdist = position.distance_to(i.position)
 						closestposition = i.position
 			if closestposition:
-				velocity += position.direction_to(closestposition) * PathInfluence * acceleration
+				velocity += position.direction_to(closestposition) * acceleration
 			else:
 				queue_free() #will only happen if there are NO enemies avaliable.
 	pass # Replace with function body.

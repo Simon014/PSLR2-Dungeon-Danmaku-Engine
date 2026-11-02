@@ -30,7 +30,7 @@ func attack():
 	bullet.split = 4
 	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
 	bullet.image = "DebugBullet2.png"
-	bullet.friendly = false
+	bullet.friendly = true
 	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
 	splitter.friendly = false
 	splitter.TTL = 10
@@ -94,7 +94,7 @@ func _on_atkcd_timeout() -> void:
 	if AttackIterating != 0:
 		attack()
 	for i in $DetectionArea.get_overlapping_bodies():
-		if (i.friendly == true):
+		if (i.friendly == false):
 			if (i.name.contains("Bullet")):
 				if position.distance_to(i.position) < 10:
 					i.queue_free()

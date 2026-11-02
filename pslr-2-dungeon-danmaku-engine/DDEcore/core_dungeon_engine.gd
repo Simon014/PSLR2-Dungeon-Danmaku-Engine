@@ -52,12 +52,78 @@ class AttackHandler:
 		newbullet.position = Position
 		executorObject.get_parent().add_child(newbullet)
 		pass
+
+
+
+class Bullet:
+	
+	var damage
+	var speed
+	var TTL
+	var friction
+	var acceleration
+	var color
+	var image
+	
+	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png") -> void:
+		self.damage = damage
+		self.speed = speed
+		self.TTL = TTL
+		self.friction = friction
+		self.acceleration = acceleration
+		self.color = color
+		self.image = image
+		pass
 		
+class Split:
+	extends Bullet
+	var split
+	var splitinto
+	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", split: int = 4, splitinto: Bullet = Bullet.new()) -> void:
+		super(damage, speed, TTL, friction, acceleration, color, image)
+		self.split = split
+		self.splitinto = splitinto
+		pass
+
+class homing:
+	extends Bullet
+	var pathstart
+	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 1, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", pathstart: int = 5) -> void:
+		super(damage, speed, TTL, friction, acceleration, color, image)
+		self.pathstart = pathstart
+		pass
 		
+class bomb:
+	extends Bullet
+	var explosionRadius
+	var ExplosionDamage
+	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", explosionRadius: int = 30, explosionDamage: float = 0.5) -> void:
+		self.explosionRadius = explosionRadius
+		self.ExplosionDamage = explosionDamage
+		pass
 		
-		
-		
-		
+class effect:
+	extends Bullet
+	var effect
+	var effectDuration
+	var effectRadius
+	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", effect: String = "poison", effectRadius: float = 30, effectDuration: int = 40) -> void:
+		self.effect = effect
+		self.effectDuration = effectDuration
+		self.effectRadius = effectRadius
+
+class lazer:
+	var damage
+	var TTL
+	var width
+	var warntime
+	var color
+	func _init(damage: int = 0, TTL: int = 5, width: float = 30, warntime: int = 1, color: Color = Color(1.0, 1.0, 1.0, 1.0)) -> void:
+		self.damage = damage
+		self.TTL = TTL
+		self.width = width
+		self.warntime = warntime
+		self.color = color
 		
 		
 		

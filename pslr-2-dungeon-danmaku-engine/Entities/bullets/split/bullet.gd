@@ -10,8 +10,6 @@ var direction
 #special configurations for this bullet
 @export var split = 4
 @export var splitinto = null
-#if you want to blow your computer up, be my guest. :3
-@export var secretrecurancesplit = false
 
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
@@ -42,14 +40,6 @@ func _process(delta: float) -> void:
 func _on_ttl_timeout() -> void:
 	var anglechange = 360 / split
 	var currentangle = 0
-	if (secretrecurancesplit):
-		for i in range(split):
-			var splitter = self.duplicate() # good luck !
-			splitter.direction = Vector2.from_angle(deg_to_rad(currentangle))
-			splitter.position = position
-			get_parent().add_child(splitter)
-			currentangle += anglechange
-		queue_free()
 	if (splitinto):
 		for i in range(split):
 			var splitter = splitinto.duplicate()
