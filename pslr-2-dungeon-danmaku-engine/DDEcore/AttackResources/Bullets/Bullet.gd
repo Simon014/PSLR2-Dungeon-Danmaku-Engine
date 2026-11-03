@@ -8,7 +8,7 @@ class_name Bullet #bullet super class. used for normal bullets. all other bullet
 @export var acceleration = 0.0
 @export var friendly = false
 @export_group("visuals")
-@export_file_path(".png") var image: String
+@export_file_path(".png") var image: String = "res://Entities/bullets/Images/DebugBullet.png"
 @export var color = Color(1.0, 1.0, 1.0, 1.0)
 
 func Create(ExecutorObject: CharacterBody2D,direction: Vector2) -> CharacterBody2D:

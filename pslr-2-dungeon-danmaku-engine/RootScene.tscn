@@ -4,18 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://cgtr8wu6fmp36" path="res://Entities/player/Player.tscn" id="1_vw6t8"]
 [ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
 [ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
-[ext_resource type="Script" uid="uid://2qhm7aos5e31" path="res://DDEcore/AttackResources/Bullets/lazer.gd" id="5_u0r43"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vh0"]
 size = Vector2(62, 756)
 
 [sub_resource type="Resource" id="Resource_my0u7"]
 script = ExtResource("5_u0r43")
-width = 1
-warningTime = 1
-damage = 100.0
-color = Color(0.7681307, 6.3725114e-05, 0.6080311, 1)
-metadata/_custom_type_script = "uid://2qhm7aos5e31"
+Type = "Cartesian"
+MathFunction = "x"
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
 
 [node name="RootScene" type="Node2D" unique_id=534867270]
 script = ExtResource("1_03604")
@@ -82,4 +80,4 @@ position = Vector2(658, 489)
 
 [node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
 position = Vector2(388, 458)
-bullet = SubResource("Resource_my0u7")
+shape = SubResource("Resource_my0u7")

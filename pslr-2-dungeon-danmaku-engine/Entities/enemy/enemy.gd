@@ -4,7 +4,7 @@ var movementvector
 var frametime
 var isdead
 
-@export var bullet: Bullet = null
+@export var shape: Shape = null
 
 #combat info
 var defence = 10
@@ -34,8 +34,8 @@ func _ready() -> void:
 	pass
 	#this function will load current dungeon variables in RAM. for now it does nothing.
 
-func attack():
-	bullet.Create(self, position.direction_to(get_global_mouse_position()))
+func attack1():
+	#attack.Execute(self, position.direction_to(get_global_mouse_position()))
 	pass
 	
 func _on_atkcd_timeout() -> void:
@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 
 func _on_tick_timeout() -> void:
 	if AttackIterating != 0:
-		attack()
+		attack1()
 	if (health < 0):
 		isdead = true
 		health = 0
@@ -67,11 +67,11 @@ func _on_tick_timeout() -> void:
 	if (SlowRemaining > 0):
 		SlowRemaining -= 1
 		
-	if (AtkLowerRemaining > 0):
-		AtkLowerRemaining -= 1
-		atk = attack * coreGlobalConst.lowatk
-	else:
-		atk = attack
+	#if (AtkLowerRemaining > 0):
+		#AtkLowerRemaining -= 1
+		#atk = attack * coreGlobalConst.lowatk
+	#else:
+		#atk = attack
 		
 	if (DefLowerRemaining > 0):
 		DefLowerRemaining -= 1
