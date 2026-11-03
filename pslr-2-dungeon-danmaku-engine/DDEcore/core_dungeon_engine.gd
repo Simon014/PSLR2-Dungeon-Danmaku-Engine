@@ -2,12 +2,12 @@ extends Node
 
 class AttackHandler:
 	#this function graphs the full cartesian plane attack, in the domain [-bullet_number, bullet_number]. function can be scaled using multiplier.
-	func CSAttackFull(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type, Bullet_number: int, Function: Callable, Multiplier: int, AimToPosition = null):
+	func CSAttackFull(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type: Bullet, Bullet_number: int, Function: Callable, Multiplier: int, AimToPosition = null):
 		for i in range(-Bullet_number, Bullet_number):
 			if i == 0:
 				i += 1
 			var NewPosition = Vector2(Position.x - i*Multiplier,Position.y - Function.call(i)*Multiplier )
-			var NewBullet = Bullet_Type.duplicate()
+			var NewBullet = Bullet_Type.Create(executorObject,Vector2.DOWN)
 			NewBullet.position = NewPosition
 			if AimToPosition:
 				NewBullet.direction = NewBullet.position.direction_to(AimToPosition)
@@ -54,76 +54,6 @@ class AttackHandler:
 		pass
 
 
-
-class Bullet:
-	
-	var damage
-	var speed
-	var TTL
-	var friction
-	var acceleration
-	var color
-	var image
-	
-	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png") -> void:
-		self.damage = damage
-		self.speed = speed
-		self.TTL = TTL
-		self.friction = friction
-		self.acceleration = acceleration
-		self.color = color
-		self.image = image
-		pass
-		
-class Split:
-	extends Bullet
-	var split
-	var splitinto
-	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", split: int = 4, splitinto: Bullet = Bullet.new()) -> void:
-		super(damage, speed, TTL, friction, acceleration, color, image)
-		self.split = split
-		self.splitinto = splitinto
-		pass
-
-class homing:
-	extends Bullet
-	var pathstart
-	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 1, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", pathstart: int = 5) -> void:
-		super(damage, speed, TTL, friction, acceleration, color, image)
-		self.pathstart = pathstart
-		pass
-		
-class bomb:
-	extends Bullet
-	var explosionRadius
-	var ExplosionDamage
-	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", explosionRadius: int = 30, explosionDamage: float = 0.5) -> void:
-		self.explosionRadius = explosionRadius
-		self.ExplosionDamage = explosionDamage
-		pass
-		
-class effect:
-	extends Bullet
-	var effect
-	var effectDuration
-	var effectRadius
-	func _init(damage: int = 0, speed: int = 100, TTL: int = 5, friction: float = 0, acceleration: float = 0, color: Color = Color(1.0, 1.0, 1.0, 1.0), image = "DebugBullet.png", effect: String = "poison", effectRadius: float = 30, effectDuration: int = 40) -> void:
-		self.effect = effect
-		self.effectDuration = effectDuration
-		self.effectRadius = effectRadius
-
-class lazer:
-	var damage
-	var TTL
-	var width
-	var warntime
-	var color
-	func _init(damage: int = 0, TTL: int = 5, width: float = 30, warntime: int = 1, color: Color = Color(1.0, 1.0, 1.0, 1.0)) -> void:
-		self.damage = damage
-		self.TTL = TTL
-		self.width = width
-		self.warntime = warntime
-		self.color = color
 		
 		
 		

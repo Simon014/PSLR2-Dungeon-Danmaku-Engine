@@ -10,6 +10,7 @@ var frametime
 var isdead = false
 var atk = corePlayerVars.attack
 var defence = corePlayerVars.defence
+var speed = corePlayerVars.speed
 
 func attackIterate():
 	AttackIterating = 1
@@ -44,7 +45,10 @@ func attack():
 	pass
 
 func _input(event: InputEvent) -> void:
-	velocity = Input.get_vector("left", "right","up","down") * corePlayerVars.speed
+	if (corePlayerVars.SlowRemaining):
+		velocity = Input.get_vector("left", "right","up","down") * speed * coreGlobalConst.slowdownpower
+	else:
+		velocity = Input.get_vector("left", "right","up","down") * speed
 	if (Input.is_action_pressed("slowdown")):
 		velocity = velocity / 3
 	

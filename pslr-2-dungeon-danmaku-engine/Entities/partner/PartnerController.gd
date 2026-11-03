@@ -7,15 +7,15 @@ var defence = corePartnerVars.defence
 var atk = corePartnerVars.attack
 
 func attack(direction):
-	var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
-	bullet.speed = corePlayerVars.attackspeed
-	bullet.damage = 10 * atk
-	bullet.direction = direction
-	bullet.color = Color(1.0, 0.409, 0.926, 1.0)
-	bullet.position = position
-	bullet.TTL = 10
-	bullet.friendly = true
-	get_parent().add_child(bullet)
+	#var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
+	#bullet.speed = corePlayerVars.attackspeed
+	#bullet.damage = 10 * atk
+	#bullet.direction = direction
+	#bullet.color = Color(1.0, 0.409, 0.926, 1.0)
+	#bullet.position = position
+	#bullet.TTL = 10
+	#bullet.friendly = true
+	#get_parent().add_child(bullet)
 	pass
 		
 func _process(delta: float) -> void:
