@@ -88,7 +88,7 @@ func _on_tick_timeout() -> void:
 							corePartnerVars.AtkLowerRemaining = i.effectDuration
 				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
 			if (i.name.contains("Bomb")):
-				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == false:
+				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == true:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage * i.explosionDamage	* (100-defence)/100

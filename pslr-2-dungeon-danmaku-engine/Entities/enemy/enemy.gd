@@ -4,7 +4,7 @@ var movementvector
 var frametime
 var isdead
 
-@export var shape: Shape = null
+@export var attack: Attack = null
 
 #combat info
 var defence = 10
@@ -13,6 +13,7 @@ var health = 100
 var atkspeed = 100
 var Maxhealth = 100
 var attackhandler = coreDungeonEngine.AttackHandler.new()
+var attackExecutor
 
 var PoisonRemaining = 0
 var SlowRemaining = 0
@@ -31,6 +32,7 @@ func attackIterate():
 	pass
 
 func _ready() -> void:
+	attackExecutor = $AttackExecutorManager
 	pass
 	#this function will load current dungeon variables in RAM. for now it does nothing.
 
@@ -39,8 +41,7 @@ func attack1():
 	pass
 	
 func _on_atkcd_timeout() -> void:
-	if AttackIterating == 0:
-		attackIterate()
+	attackExecutor.ExecuteNewAttack(attack)
 	pass # Replace with function body.d
 		
 func _process(delta: float) -> void:

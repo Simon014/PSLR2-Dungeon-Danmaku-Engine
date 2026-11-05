@@ -4,7 +4,7 @@ class_name bomb
 @export_group("bomb configurations")
 @export var explosionRadius = 30
 @export var explosionDamage = 0.5
-@export_file_path(".png") var explosionImage: String
+@export_file_path(".png") var explosionImage: String = "res://Entities/bullets/Images/DebugBullet.png"
 
 func Create(ExecutorObject: CharacterBody2D,direction: Vector2) -> CharacterBody2D:
 	var bullet = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()

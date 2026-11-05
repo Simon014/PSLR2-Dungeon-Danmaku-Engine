@@ -11,37 +11,17 @@ var isdead = false
 var atk = corePlayerVars.attack
 var defence = corePlayerVars.defence
 var speed = corePlayerVars.speed
+var attackExecutor
 
-func attackIterate():
-	AttackIterating = 1
-	TotalBullets = 100
-	AttackCounter = 0
+@export var attack1: Attack
+
+func _ready() -> void:
+	attackExecutor = $AttackExecutorManager
 	pass
 
+
 func attack():
-	if AttackIterating != 0:
-		if AttackCounter == TotalBullets:
-			AttackIterating = 0
-			return
-	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
-	bullet.position = position
-	bullet.TTL = 5
-	bullet.speed = 100
-	bullet.acceleration = 0.1
-	bullet.split = 4
-	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
-	bullet.image = "DebugBullet2.png"
-	bullet.friendly = true
-	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
-	splitter.friendly = false
-	splitter.TTL = 10
-	splitter.damage = 100
-	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
-	splitter.direction = Vector2.DOWN
-	bullet.splitinto = splitter
-	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.DRattackIterate(self, position, bullet, AttackCounter, func(x): return x * 10)
-	AttackCounter += 1
+	attackExecutor.ExecuteNewAttack(attack1)
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -53,15 +33,11 @@ func _input(event: InputEvent) -> void:
 		velocity = velocity / 3
 	
 	if (Input.is_action_just_pressed("SPAttack1")):
-		if AttackIterating == 1:
-			pass
-		else:
-			attackIterate()
+		attack()
 	pass
 		
 func _process(delta: float) -> void:
 	move_and_slide()
-	print(corePlayerVars.Health)
 	corePlayerVars.position = position
 	frametime = delta
 
@@ -116,7 +92,7 @@ func _on_atkcd_timeout() -> void:
 						if (i.effect == "lower attack"):
 							corePlayerVars.AtkLowerRemaining = i.effectDuration
 			if (i.name.contains("Bomb")):
-				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == false:
+				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == true:
 					i.queue_free()
 					if (not isdead):
 						corePlayerVars.Health -= i.damage * i.explosionDamage	* (100-corePlayerVars.defence)/100

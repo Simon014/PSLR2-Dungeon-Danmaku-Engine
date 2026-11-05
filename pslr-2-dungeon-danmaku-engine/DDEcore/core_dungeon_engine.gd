@@ -4,18 +4,6 @@ extends Node
 class AttackHandler:
 	var MathHandler = Expression.new()
 	#this function graphs the full cartesian plane attack, in the domain [-bullet_number, bullet_number]. function can be scaled using multiplier.
-	func CSAttackFull(executorObject: CharacterBody2D, Position: Vector2, Bullet_Type: Bullet, Bullet_number: int, Function: String, Multiplier: int, AimToPosition = null):
-		for i in range(-Bullet_number, Bullet_number):
-			if i == 0:
-				i += 1
-			var NewPosition = Vector2(Position.x - i*Multiplier,Position.y - MathHandler.parse(Function)*Multiplier )
-			var NewBullet = Bullet_Type.Create(executorObject,Vector2.DOWN)
-			NewBullet.position = NewPosition
-			if AimToPosition:
-				NewBullet.direction = NewBullet.position.direction_to(AimToPosition)
-			else:
-				NewBullet.direction = Bullet_Type.direction
-			pass
 	
 	#this function graphs a single point of a Cartesian plane attack. bullet_number specifies the input value of the function, not range. it is up to the executor object
 	#to handle iterating through.

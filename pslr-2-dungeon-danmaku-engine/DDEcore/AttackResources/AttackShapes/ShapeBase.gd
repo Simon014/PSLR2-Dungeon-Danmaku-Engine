@@ -6,3 +6,5 @@ class_name Shape
 @export var MathFunction: String = "x"
 @export var Var1: int = 4
 @export var var2: int = 1
+@export var var3: Vector2
+@export_enum("None","Player","Partner") var AimingPosition = "None"
