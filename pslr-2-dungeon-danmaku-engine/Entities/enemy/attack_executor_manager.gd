@@ -74,7 +74,6 @@ func CartesianIter(atk = activeAttack):
 	elif atk.shape.var3 != Vector2.ZERO:
 		var newBullet = atk.bullet.Create(get_parent(), atk.shape.var3)
 		newBullet.position = Vector2(get_parent().position.x -i * atk.shape.var2 * atk.shape.var2, get_parent().position.y - mathHandler.execute([i])*atk.shape.var2)
-	
 	else:
 		var newBullet = atk.bullet.Create(get_parent(), Vector2.DOWN)
 		newBullet.position = Vector2(get_parent().position.x -i * atk.shape.var2 * atk.shape.var2, get_parent().position.y - mathHandler.execute([i])*atk.shape.var2)
