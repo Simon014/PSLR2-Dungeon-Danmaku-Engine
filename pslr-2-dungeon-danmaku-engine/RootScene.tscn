@@ -10,14 +10,13 @@
 [ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="6_8b3ly"]
 [ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="6_644yn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vh0"]
-size = Vector2(62, 756)
+[ext_resource type="Script" uid="uid://2qhm7aos5e31" path="res://DDEcore/AttackResources/Bullets/lazer.gd" id="8_644yn"]
 
 [sub_resource type="Resource" id="Resource_eqcq4"]
 script = ExtResource("3_644yn")
-pathstart = 0.0
-speed = 0.0
+pathstart = 1.0
+damage = 1.0
+TTL = 10
 acceleration = 11.0
 friendly = true
 metadata/_custom_type_script = "uid://ci72njx1mc2l8"
@@ -26,8 +25,7 @@ metadata/_custom_type_script = "uid://ci72njx1mc2l8"
 script = ExtResource("5_u0r43")
 Type = "Cartesian"
 Mode = "Iterative"
-Var1 = 100
-var2 = 5
+Var1 = 10.0
 var3 = Vector2(0, -1)
 metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
 
@@ -37,124 +35,84 @@ bullet = SubResource("Resource_eqcq4")
 shape = SubResource("Resource_s6oar")
 metadata/_custom_type_script = "uid://canqgpmdpsups"
 
-[sub_resource type="Resource" id="Resource_dlv3y"]
-script = ExtResource("6_644yn")
-explosionRadius = 50
-acceleration = 1.0
-metadata/_custom_type_script = "uid://fbv70gg53nhe"
-
-[sub_resource type="Resource" id="Resource_bn020"]
-script = ExtResource("5_8b3ly")
-splitBullet = SubResource("Resource_dlv3y")
-TTL = 2
-metadata/_custom_type_script = "uid://8j14v5u27w31"
-
 [sub_resource type="Resource" id="Resource_w6mlc"]
-script = ExtResource("5_u0r43")
-Type = "Cartesian"
-Mode = "Iterative"
-MathFunction = "sqrt(abs(x))*5"
-Var1 = 6
-var2 = 5
-AimingPosition = "Player"
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_buaba"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_bn020")
-shape = SubResource("Resource_w6mlc")
-metadata/_custom_type_script = "uid://canqgpmdpsups"
-
-[sub_resource type="Resource" id="Resource_ye7xa"]
-script = ExtResource("5_cin2t")
-damage = 5.0
-speed = 300.0
-friction = 0.1
-metadata/_custom_type_script = "uid://c1kc2tulupqfb"
-
-[sub_resource type="Resource" id="Resource_2j48m"]
-script = ExtResource("5_u0r43")
-Type = "Cartesian"
-Mode = "Iterative"
-Var1 = 10
-var2 = 10
-AimingPosition = "Player"
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+script = ExtResource("8_644yn")
+width = 0.2
+metadata/_custom_type_script = "uid://2qhm7aos5e31"
 
 [sub_resource type="Resource" id="Resource_8yitb"]
+script = ExtResource("5_8b3ly")
+Amount = 8.0
+splitBullet = SubResource("Resource_w6mlc")
+metadata/_custom_type_script = "uid://8j14v5u27w31"
+
+[sub_resource type="Resource" id="Resource_buaba"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+MathFunction = "sin(pow(x,2))"
+Var1 = 10.0
+var2 = 10.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_dlv3y"]
 script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_ye7xa")
-shape = SubResource("Resource_2j48m")
+bullet = SubResource("Resource_8yitb")
+shape = SubResource("Resource_buaba")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_bn020"]
+script = ExtResource("6_644yn")
+metadata/_custom_type_script = "uid://fbv70gg53nhe"
+
+[sub_resource type="Resource" id="Resource_ye7xa"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+Mode = "Iterative"
+MathFunction = "pow(1/cos(x/9),4)*10"
+Var1 = 10.0
+var2 = 10.0
+AimingPosition = "Player"
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_2j48m"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_bn020")
+shape = SubResource("Resource_ye7xa")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_fwqvt"]
+script = ExtResource("5_cin2t")
+damage = 1.0
+speed = 300.0
+image = "res://Entities/bullets/Images/DebugBullet2.png"
+color = Color(1.92523e-06, 0.8206005, 0.90377283, 1)
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_x68g6"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+Mode = "Iterative"
+Var1 = 5.0
+var2 = 10.0
+AimingPosition = "Partner"
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_vslhj"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_fwqvt")
+shape = SubResource("Resource_x68g6")
 metadata/_custom_type_script = "uid://canqgpmdpsups"
 
 [node name="RootScene" type="Node2D" unique_id=534867270]
 script = ExtResource("1_03604")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1702970099]
-position = Vector2(103, -28)
-collision_layer = 16
-collision_mask = 16
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D3" unique_id=2095482167]
-offset_right = 40.00003
-offset_bottom = 717.101
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=375589768]
-position = Vector2(21, 368)
-shape = SubResource("RectangleShape2D_y8vh0")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=572463688]
-position = Vector2(293, 755)
-rotation = -1.5707963
-collision_layer = 16
-collision_mask = 16
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D4" unique_id=1477911127]
-offset_right = 40.00003
-offset_bottom = 717.101
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1801969212]
-position = Vector2(21, 368)
-shape = SubResource("RectangleShape2D_y8vh0")
-
 [node name="Player" parent="." unique_id=217802643 instance=ExtResource("1_vw6t8")]
 position = Vector2(569, 254)
-attack1 = SubResource("Resource_y6m3s")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=902222407]
-position = Vector2(1101, -28)
-collision_layer = 16
-collision_mask = 16
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=2051844777]
-offset_right = 40.00003
-offset_bottom = 717.101
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2097403284]
-position = Vector2(21, 368)
-shape = SubResource("RectangleShape2D_y8vh0")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=2120918544]
-position = Vector2(293, -28)
-rotation = -1.5707963
-collision_layer = 16
-collision_mask = 16
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D5" unique_id=1438231505]
-offset_right = 40.00003
-offset_bottom = 717.101
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" unique_id=1263767008]
-position = Vector2(21, 368)
-shape = SubResource("RectangleShape2D_y8vh0")
+attack1 = Array[ExtResource("6_8b3ly")]([SubResource("Resource_y6m3s")])
 
 [node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
-position = Vector2(658, 489)
+position = Vector2(622, 496)
 
 [node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
 position = Vector2(577, 33)
-attack = SubResource("Resource_buaba")
-
-[node name="Enemy2" parent="." unique_id=1290338376 instance=ExtResource("4_p6tge")]
-position = Vector2(884, 97)
-attack = SubResource("Resource_8yitb")
+attack = Array[ExtResource("6_8b3ly")]([SubResource("Resource_dlv3y"), SubResource("Resource_2j48m"), SubResource("Resource_vslhj")])

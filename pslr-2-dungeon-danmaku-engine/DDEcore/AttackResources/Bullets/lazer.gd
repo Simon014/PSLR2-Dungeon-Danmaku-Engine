@@ -1,8 +1,8 @@
 extends Bullet
 class_name lazer
 
-@export var width = 30
-@export var warningTime: int
+@export var width = 30.0
+@export var warningTime: int = 1
 
 func Create(ExecutorObject: CharacterBody2D,direction: Vector2) -> CharacterBody2D:
 	var bullet = load("res://Entities/bullets/lazer/lazer.tscn").instantiate()

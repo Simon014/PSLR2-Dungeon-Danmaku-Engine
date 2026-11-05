@@ -4,7 +4,7 @@ var movementvector
 var frametime
 var isdead
 
-@export var attack: Attack = null
+@export var attack: Array[Attack]
 
 #combat info
 var defence = 10

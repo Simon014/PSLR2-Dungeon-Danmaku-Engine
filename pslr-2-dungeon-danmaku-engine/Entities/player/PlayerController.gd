@@ -13,7 +13,7 @@ var defence = corePlayerVars.defence
 var speed = corePlayerVars.speed
 var attackExecutor
 
-@export var attack1: Attack
+@export var attack1: Array[Attack]
 
 func _ready() -> void:
 	attackExecutor = $AttackExecutorManager
