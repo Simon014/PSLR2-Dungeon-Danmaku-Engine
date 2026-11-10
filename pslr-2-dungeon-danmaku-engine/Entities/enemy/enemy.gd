@@ -12,8 +12,6 @@ var atk = 10
 var health = 100
 var atkspeed = 100
 var Maxhealth = 100
-var attackhandler = coreDungeonEngine.AttackHandler.new()
-var attackExecutor
 
 var PoisonRemaining = 0
 var SlowRemaining = 0
@@ -25,31 +23,17 @@ var AttackIterating = 0 #0 : no attack being iterated through. x : x attack bein
 var AttackCounter = 0
 var TotalBullets = 0
 
-func attackIterate():
-	AttackIterating = 1
-	TotalBullets = 10
-	AttackCounter = 0
-	pass
-
-func _ready() -> void:
-	attackExecutor = $AttackExecutorManager
-	pass
 	#this function will load current dungeon variables in RAM. for now it does nothing.
 
-func attack1():
-	#attack.Execute(self, position.direction_to(get_global_mouse_position()))
-	pass
 	
 func _on_atkcd_timeout() -> void:
-	attackExecutor.ExecuteNewAttack(attack)
+	$AttackExecutorManager.ExecuteNewAttack(attack)
 	pass # Replace with function body.d
 		
 func _process(delta: float) -> void:
 	frametime = delta
 
 func _on_tick_timeout() -> void:
-	if AttackIterating != 0:
-		attack1()
 	if (health < 0):
 		isdead = true
 		health = 0
@@ -68,11 +52,11 @@ func _on_tick_timeout() -> void:
 	if (SlowRemaining > 0):
 		SlowRemaining -= 1
 		
-	#if (AtkLowerRemaining > 0):
-		#AtkLowerRemaining -= 1
-		#atk = attack * coreGlobalConst.lowatk
-	#else:
-		#atk = attack
+	if (AtkLowerRemaining > 0):
+		AtkLowerRemaining -= 1
+		atk = attack * coreGlobalConst.lowatk
+	else:
+		atk = attack
 		
 	if (DefLowerRemaining > 0):
 		DefLowerRemaining -= 1

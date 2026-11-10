@@ -69,7 +69,7 @@ func _on_tick_timeout() -> void:
 	for i in $DetectionArea.get_overlapping_bodies():
 		if (i.friendly == false):
 			if (i.name.contains("Bullet")):
-				if position.distance_to(i.position) < 10:
+				if position.distance_to(i.position) < 7:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage	* (100-defence)/100
@@ -92,7 +92,7 @@ func _on_tick_timeout() -> void:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage * i.explosionDamage	* (100-defence)/100
-				elif position.distance_to(i.position) < 10:
+				elif position.distance_to(i.position) < 7:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage	* (100-defence)/100

@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var attackhandler = coreDungeonEngine.AttackHandler.new()
-
 #attack iterating stats. saved locally.
 var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
 var AttackCounter = 0
