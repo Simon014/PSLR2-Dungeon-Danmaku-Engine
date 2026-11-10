@@ -5,11 +5,10 @@
 [ext_resource type="Script" uid="uid://ci72njx1mc2l8" path="res://DDEcore/AttackResources/Bullets/homing.gd" id="3_644yn"]
 [ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
 [ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
-[ext_resource type="Script" uid="uid://8j14v5u27w31" path="res://DDEcore/AttackResources/Bullets/split.gd" id="5_8b3ly"]
-[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="5_cin2t"]
 [ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="6_8b3ly"]
-[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="6_644yn"]
+[ext_resource type="Resource" uid="uid://d1lbjvo8p1lxr" path="res://Attacks/circle.tres" id="8_644yn"]
+[ext_resource type="Resource" uid="uid://dgu5ot7auep0w" path="res://Attacks/spliter bomb 4.tres" id="9_w6mlc"]
 
 [sub_resource type="Resource" id="Resource_eqcq4"]
 script = ExtResource("3_644yn")
@@ -34,53 +33,6 @@ bullet = SubResource("Resource_eqcq4")
 shape = SubResource("Resource_s6oar")
 metadata/_custom_type_script = "uid://canqgpmdpsups"
 
-[sub_resource type="Resource" id="Resource_8b3ly"]
-script = ExtResource("5_cin2t")
-damage = 1.0
-friction = 0.1
-metadata/_custom_type_script = "uid://c1kc2tulupqfb"
-
-[sub_resource type="Resource" id="Resource_644yn"]
-script = ExtResource("5_u0r43")
-MathFunction = "x*10"
-Var1 = 0.0
-var2 = 36.0
-AimingPosition = "Player"
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_w6mlc"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_8b3ly")
-shape = SubResource("Resource_644yn")
-metadata/_custom_type_script = "uid://canqgpmdpsups"
-
-[sub_resource type="Resource" id="Resource_buaba"]
-script = ExtResource("6_644yn")
-damage = 5.115
-TTL = 2
-image = "res://Entities/bullets/Images/DebugBullet2.png"
-metadata/_custom_type_script = "uid://fbv70gg53nhe"
-
-[sub_resource type="Resource" id="Resource_dlv3y"]
-script = ExtResource("5_8b3ly")
-splitBullet = SubResource("Resource_buaba")
-damage = 1.0
-TTL = 2
-metadata/_custom_type_script = "uid://8j14v5u27w31"
-
-[sub_resource type="Resource" id="Resource_bn020"]
-script = ExtResource("5_u0r43")
-MathFunction = "x* 90"
-Var1 = 0.0
-var2 = 4.0
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_ye7xa"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_dlv3y")
-shape = SubResource("Resource_bn020")
-metadata/_custom_type_script = "uid://canqgpmdpsups"
-
 [node name="RootScene" type="Node2D" unique_id=534867270]
 script = ExtResource("1_03604")
 
@@ -93,4 +45,4 @@ position = Vector2(622, 496)
 
 [node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
 position = Vector2(577, 33)
-attack = Array[ExtResource("6_8b3ly")]([SubResource("Resource_w6mlc"), SubResource("Resource_ye7xa")])
+attack = Array[ExtResource("6_8b3ly")]([ExtResource("8_644yn"), ExtResource("9_w6mlc")])

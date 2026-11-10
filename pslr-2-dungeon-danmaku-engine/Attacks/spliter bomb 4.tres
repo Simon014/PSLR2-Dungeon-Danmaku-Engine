@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://dgu5ot7auep0w"]
+
+[ext_resource type="Script" uid="uid://8j14v5u27w31" path="res://DDEcore/AttackResources/Bullets/split.gd" id="1_pketi"]
+[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="2_qqkmm"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="3_por3t"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="4_57f3x"]
+
+[sub_resource type="Resource" id="Resource_buaba"]
+script = ExtResource("2_qqkmm")
+damage = 5.115
+TTL = 2
+image = "res://Entities/bullets/Images/DebugBullet2.png"
+metadata/_custom_type_script = "uid://fbv70gg53nhe"
+
+[sub_resource type="Resource" id="Resource_dlv3y"]
+script = ExtResource("1_pketi")
+splitBullet = SubResource("Resource_buaba")
+damage = 1.0
+TTL = 2
+metadata/_custom_type_script = "uid://8j14v5u27w31"
+
+[sub_resource type="Resource" id="Resource_bn020"]
+script = ExtResource("4_57f3x")
+MathFunction = "x* 90"
+Var1 = 0.0
+var2 = 4.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("3_por3t")
+bullet = SubResource("Resource_dlv3y")
+shape = SubResource("Resource_bn020")
+metadata/_custom_type_script = "uid://canqgpmdpsups"

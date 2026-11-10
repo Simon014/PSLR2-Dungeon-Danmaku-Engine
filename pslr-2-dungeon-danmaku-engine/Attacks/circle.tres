@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://d1lbjvo8p1lxr"]
+
+[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="1_01pee"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_bnn8g"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="3_woodw"]
+
+[sub_resource type="Resource" id="Resource_8b3ly"]
+script = ExtResource("1_01pee")
+damage = 1.0
+friction = 0.1
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_644yn"]
+script = ExtResource("3_woodw")
+MathFunction = "x*10"
+Var1 = 0.0
+var2 = 36.0
+AimingPosition = "Player"
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("2_bnn8g")
+bullet = SubResource("Resource_8b3ly")
+shape = SubResource("Resource_644yn")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
