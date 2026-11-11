@@ -9,6 +9,7 @@ var isdead = false
 var atk = corePlayerVars.attack
 var defence = corePlayerVars.defence
 var speed = corePlayerVars.speed
+var atkspeed = corePlayerVars.attackspeed
 var attackExecutor
 
 @export var attack1: Array[Attack]

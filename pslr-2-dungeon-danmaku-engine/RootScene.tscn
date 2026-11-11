@@ -2,35 +2,68 @@
 
 [ext_resource type="Script" uid="uid://qpp2q3t74mg3" path="res://debug.gd" id="1_03604"]
 [ext_resource type="PackedScene" uid="uid://cgtr8wu6fmp36" path="res://Entities/player/Player.tscn" id="1_vw6t8"]
-[ext_resource type="Script" uid="uid://ci72njx1mc2l8" path="res://DDEcore/AttackResources/Bullets/homing.gd" id="3_644yn"]
 [ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
 [ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
 [ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="6_8b3ly"]
-[ext_resource type="Resource" uid="uid://d1lbjvo8p1lxr" path="res://Attacks/circle.tres" id="8_644yn"]
-[ext_resource type="Resource" uid="uid://dgu5ot7auep0w" path="res://Attacks/spliter bomb 4.tres" id="9_w6mlc"]
+[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="8_8b3ly"]
+[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="9_644yn"]
+
+[sub_resource type="Resource" id="Resource_8b3ly"]
+script = ExtResource("8_8b3ly")
+friendly = true
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
 
 [sub_resource type="Resource" id="Resource_eqcq4"]
-script = ExtResource("3_644yn")
-pathstart = 1.0
-damage = 1.0
-TTL = 10
-acceleration = 11.0
-friendly = true
-metadata/_custom_type_script = "uid://ci72njx1mc2l8"
-
-[sub_resource type="Resource" id="Resource_s6oar"]
 script = ExtResource("5_u0r43")
 Type = "Cartesian"
 Mode = "Iterative"
-Var1 = 10.0
 var3 = Vector2(0, -1)
 metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
 
-[sub_resource type="Resource" id="Resource_y6m3s"]
+[sub_resource type="Resource" id="Resource_s6oar"]
 script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_eqcq4")
-shape = SubResource("Resource_s6oar")
+bullet = SubResource("Resource_8b3ly")
+shape = SubResource("Resource_eqcq4")
+UseEntityStats = true
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_644yn"]
+script = ExtResource("8_8b3ly")
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_w6mlc"]
+script = ExtResource("5_u0r43")
+MathFunction = "sin(x)*10 + randi_range(-30,30) + 90"
+Var1 = 0.0
+var2 = 5.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_buaba"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_644yn")
+shape = SubResource("Resource_w6mlc")
+Repeat = 20
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_dlv3y"]
+script = ExtResource("9_644yn")
+metadata/_custom_type_script = "uid://fbv70gg53nhe"
+
+[sub_resource type="Resource" id="Resource_bn020"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+Mode = "Iterative"
+MathFunction = "randi_range(-10,10)"
+Var1 = 20.0
+var2 = 5.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_ye7xa"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_dlv3y")
+shape = SubResource("Resource_bn020")
+Repeat = 5
 metadata/_custom_type_script = "uid://canqgpmdpsups"
 
 [node name="RootScene" type="Node2D" unique_id=534867270]
@@ -38,11 +71,11 @@ script = ExtResource("1_03604")
 
 [node name="Player" parent="." unique_id=217802643 instance=ExtResource("1_vw6t8")]
 position = Vector2(569, 254)
-attack1 = Array[ExtResource("6_8b3ly")]([SubResource("Resource_y6m3s")])
+attack1 = Array[ExtResource("6_8b3ly")]([SubResource("Resource_s6oar")])
 
 [node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
 position = Vector2(622, 496)
 
 [node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
 position = Vector2(577, 33)
-attack = Array[ExtResource("6_8b3ly")]([ExtResource("8_644yn"), ExtResource("9_w6mlc")])
+attack = Array[ExtResource("6_8b3ly")]([SubResource("Resource_buaba"), SubResource("Resource_ye7xa")])

@@ -14,9 +14,9 @@ var threshold = 0.05
 func _ready() -> void:
 	pass
 	
-func ExecuteNewAttack(atklist: Array[Attack]) -> void:
+func ExecuteNewAttack(atklist: Array[Attack]) -> int:
 	if isactive:
-		return
+		return 0
 	else:
 		#clear the previous list.
 		activeAttack.clear()
@@ -31,11 +31,18 @@ func ExecuteNewAttack(atklist: Array[Attack]) -> void:
 			if mathHandler.get_error_text() != "":
 				print("Math function invalid : " + mathHandler.get_error_text())
 				continue
-			#if all checks are good, append it.
-			activeAttack.append(atk)
+			#if all checks are good, check if it uses modified stats.
+			if atk.UseEntityStats:
+				atk.bullet.damage = get_parent().atk
+				atk.bullet.speed = get_parent().atkspeed
+			for i in range(atk.Repeat):
+				activeAttack.append(atk)
 		print(str(len(activeAttack)) + " out of " + str(len(atklist)) + " attacks succesfully initalized")
 		isactive = true
-	pass
+		var cost = 0
+		for i in activeAttack:
+			cost += i.Cost
+		return cost
 
 func _on_timer_timeout() -> void:
 	if len(activeAttack) == 0 and current == null:
@@ -96,5 +103,5 @@ func CartesianRender(atk: Attack, number: int) -> void:
 	
 func DirectionalRender(atk: Attack, number: int):
 	# function defines the direction the bullet will go in. all other variables do not matter.
-	var newBullet = atk.bullet.Create(get_parent(), Vector2.from_angle(deg_to_rad(mathHandler.execute([number]))))
+	atk.bullet.Create(get_parent(), Vector2.from_angle(deg_to_rad(mathHandler.execute([number]))))
 	pass

@@ -5,6 +5,7 @@ var frametime
 var isdead
 var defence = corePartnerVars.defence
 var atk = corePartnerVars.attack
+var atkspeed = corePartnerVars.attackspeed
 
 func attack(direction):
 	#var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()

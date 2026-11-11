@@ -10,7 +10,7 @@ var SPmax = SP * 1.5
 var speed = 400
 var position
 #combat stats
-var attack = 1
+var attack = 1000
 var defence = 1
 var attackspeed = 100
 #effect data

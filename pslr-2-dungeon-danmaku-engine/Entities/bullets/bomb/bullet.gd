@@ -46,7 +46,7 @@ func _on_ttl_timeout() -> void:
 
 func iexploded():
 	return $TTL.is_stopped()
-func _on_animation_player_current_animation_changed(name: StringName) -> void:
+func _on_animation_player_current_animation_changed(name: String) -> void:
 	if name == "":
 		queue_free()
 	pass # Replace with function body.
