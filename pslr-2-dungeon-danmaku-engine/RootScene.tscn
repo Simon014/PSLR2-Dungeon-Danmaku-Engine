@@ -9,25 +9,6 @@
 [ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="8_8b3ly"]
 [ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="9_644yn"]
 
-[sub_resource type="Resource" id="Resource_8b3ly"]
-script = ExtResource("8_8b3ly")
-friendly = true
-metadata/_custom_type_script = "uid://c1kc2tulupqfb"
-
-[sub_resource type="Resource" id="Resource_eqcq4"]
-script = ExtResource("5_u0r43")
-Type = "Cartesian"
-Mode = "Iterative"
-var3 = Vector2(0, -1)
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_s6oar"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_8b3ly")
-shape = SubResource("Resource_eqcq4")
-UseEntityStats = true
-metadata/_custom_type_script = "uid://canqgpmdpsups"
-
 [sub_resource type="Resource" id="Resource_644yn"]
 script = ExtResource("8_8b3ly")
 metadata/_custom_type_script = "uid://c1kc2tulupqfb"
@@ -71,7 +52,6 @@ script = ExtResource("1_03604")
 
 [node name="Player" parent="." unique_id=217802643 instance=ExtResource("1_vw6t8")]
 position = Vector2(569, 254)
-attack1 = Array[ExtResource("6_8b3ly")]([SubResource("Resource_s6oar")])
 
 [node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
 position = Vector2(622, 496)

@@ -12,16 +12,19 @@ var speed = corePlayerVars.speed
 var atkspeed = corePlayerVars.attackspeed
 var attackExecutor
 
+@export_group("SP attacks")
+var WeakAttackBullet = Bullet.new()
 @export var attack1: Array[Attack]
+@export var attack2: Array[Attack]
+@export var attack3: Array[Attack]
 
 func _ready() -> void:
 	attackExecutor = $AttackExecutorManager
 	pass
 
 
-func attack():
-	attackExecutor.ExecuteNewAttack(attack1)
-	pass
+
+	
 
 func _input(event: InputEvent) -> void:
 	if (corePlayerVars.SlowRemaining):
@@ -32,9 +35,11 @@ func _input(event: InputEvent) -> void:
 		velocity = velocity / 3
 	
 	if (Input.is_action_just_pressed("SPAttack1")):
-		attack()
-	pass
-		
+		attackExecutor.ExecuteNewAttack(attack1)
+	if (Input.is_action_just_pressed("SPAttack2")):
+		attackExecutor.ExecuteNewAttack(attack2)
+	if (Input.is_action_just_pressed("SPAttack3")):
+		attackExecutor.ExecuteNewAttack(attack3)
 func _process(delta: float) -> void:
 	move_and_slide()
 	corePlayerVars.position = position
@@ -69,9 +74,6 @@ func _on_atkcd_timeout() -> void:
 		defence = corePlayerVars.defence * coreGlobalConst.lowdef
 	else:
 		defence = corePlayerVars.defence
-		
-	if AttackIterating != 0:
-		attack()
 	for i in $DetectionArea.get_overlapping_bodies():
 		if (i.friendly == false):
 			if (i.name.contains("Bullet")):
