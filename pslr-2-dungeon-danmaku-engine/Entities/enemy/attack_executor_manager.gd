@@ -14,9 +14,9 @@ var threshold = 0.05
 func _ready() -> void:
 	pass
 	
-func ExecuteNewAttack(atklist: Array[Attack]) -> int:
+func ExecuteNewAttack(atklist: Array[Attack]) -> void:
 	if isactive:
-		return 0
+		return 
 	else:
 		#clear the previous list.
 		activeAttack.clear()
@@ -39,10 +39,6 @@ func ExecuteNewAttack(atklist: Array[Attack]) -> int:
 				activeAttack.append(atk)
 		print(str(len(activeAttack)) + " out of " + str(len(atklist)) + " attacks succesfully initalized")
 		isactive = true
-		var cost = 0
-		for i in activeAttack:
-			cost += i.Cost
-		return cost
 
 func _on_timer_timeout() -> void:
 	if len(activeAttack) == 0 and current == null:

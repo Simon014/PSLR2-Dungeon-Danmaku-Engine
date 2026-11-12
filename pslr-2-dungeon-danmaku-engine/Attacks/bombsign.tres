@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://c2mu5wgdpfa4q"]
+
+[ext_resource type="Script" uid="uid://8j14v5u27w31" path="res://DDEcore/AttackResources/Bullets/split.gd" id="1_clr67"]
+[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="2_2qv1q"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="3_sqa0m"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="4_ss8r2"]
+
+[sub_resource type="Resource" id="Resource_mum5m"]
+script = ExtResource("2_2qv1q")
+friendly = true
+metadata/_custom_type_script = "uid://fbv70gg53nhe"
+
+[sub_resource type="Resource" id="Resource_544bw"]
+script = ExtResource("1_clr67")
+splitBullet = SubResource("Resource_mum5m")
+friendly = true
+metadata/_custom_type_script = "uid://8j14v5u27w31"
+
+[sub_resource type="Resource" id="Resource_w70jl"]
+script = ExtResource("4_ss8r2")
+Type = "Cartesian"
+Mode = "Iterative"
+MathFunction = "sin(x)"
+Var1 = 10.0
+var2 = 5.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("3_sqa0m")
+bullet = SubResource("Resource_544bw")
+shape = SubResource("Resource_w70jl")
+UseEntityStats = true
+metadata/_custom_type_script = "uid://canqgpmdpsups"

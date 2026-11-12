@@ -12,14 +12,17 @@ var speed = corePlayerVars.speed
 var atkspeed = corePlayerVars.attackspeed
 var attackExecutor
 
+@export var WeakAttackBullet = Bullet.new()
 @export_group("SP attacks")
-var WeakAttackBullet = Bullet.new()
-@export var attack1: Array[Attack]
-@export var attack2: Array[Attack]
-@export var attack3: Array[Attack]
+
+@export var attack1: AttackSet
+@export var attack2: AttackSet
+@export var attack3: AttackSet
 
 func _ready() -> void:
 	attackExecutor = $AttackExecutorManager
+	WeakAttackBullet.damage = atk
+	WeakAttackBullet.speed = atkspeed
 	pass
 
 
@@ -35,18 +38,21 @@ func _input(event: InputEvent) -> void:
 		velocity = velocity / 3
 	
 	if (Input.is_action_just_pressed("SPAttack1")):
-		attackExecutor.ExecuteNewAttack(attack1)
+		attackExecutor.ExecuteNewAttack(attack1.Set)
 	if (Input.is_action_just_pressed("SPAttack2")):
-		attackExecutor.ExecuteNewAttack(attack2)
+		attackExecutor.ExecuteNewAttack(attack2.Set)
 	if (Input.is_action_just_pressed("SPAttack3")):
-		attackExecutor.ExecuteNewAttack(attack3)
+		attackExecutor.ExecuteNewAttack(attack3.Set)
 func _process(delta: float) -> void:
 	move_and_slide()
 	corePlayerVars.position = position
 	frametime = delta
-
+	
 
 func _on_atkcd_timeout() -> void:
+	if (Input.is_action_pressed("shoot normal")):
+		WeakAttackBullet.Create(self, position.direction_to(get_global_mouse_position()))
+		pass
 	if (corePlayerVars.Health < 0):
 		queue_free()
 		get_tree().quit()

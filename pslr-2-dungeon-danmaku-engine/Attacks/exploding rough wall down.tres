@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://of2bf5lly7br"]
+
+[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="1_aqjcb"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_pl76h"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="3_t42oj"]
+
+[sub_resource type="Resource" id="Resource_dlv3y"]
+script = ExtResource("1_aqjcb")
+metadata/_custom_type_script = "uid://fbv70gg53nhe"
+
+[sub_resource type="Resource" id="Resource_bn020"]
+script = ExtResource("3_t42oj")
+Type = "Cartesian"
+Mode = "Iterative"
+MathFunction = "randi_range(-10,10)"
+Var1 = 20.0
+var2 = 5.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("2_pl76h")
+bullet = SubResource("Resource_dlv3y")
+shape = SubResource("Resource_bn020")
+Repeat = 5
+metadata/_custom_type_script = "uid://canqgpmdpsups"

@@ -4,48 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://cgtr8wu6fmp36" path="res://Entities/player/Player.tscn" id="1_vw6t8"]
 [ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
 [ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
-[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="6_8b3ly"]
-[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="8_8b3ly"]
-[ext_resource type="Script" uid="uid://fbv70gg53nhe" path="res://DDEcore/AttackResources/Bullets/bomb.gd" id="9_644yn"]
-
-[sub_resource type="Resource" id="Resource_644yn"]
-script = ExtResource("8_8b3ly")
-metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+[ext_resource type="Resource" uid="uid://bhb8l57yay325" path="res://Attacks/normal sin shoot down.tres" id="6_644yn"]
+[ext_resource type="Resource" uid="uid://of2bf5lly7br" path="res://Attacks/exploding rough wall down.tres" id="7_8b3ly"]
+[ext_resource type="Script" uid="uid://dugbojoidf3hy" path="res://DDEcore/AttackResources/Attacks/AttackSet.gd" id="8_644yn"]
 
 [sub_resource type="Resource" id="Resource_w6mlc"]
-script = ExtResource("5_u0r43")
-MathFunction = "sin(x)*10 + randi_range(-30,30) + 90"
-Var1 = 0.0
-var2 = 5.0
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_buaba"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_644yn")
-shape = SubResource("Resource_w6mlc")
-Repeat = 20
-metadata/_custom_type_script = "uid://canqgpmdpsups"
-
-[sub_resource type="Resource" id="Resource_dlv3y"]
-script = ExtResource("9_644yn")
-metadata/_custom_type_script = "uid://fbv70gg53nhe"
-
-[sub_resource type="Resource" id="Resource_bn020"]
-script = ExtResource("5_u0r43")
-Type = "Cartesian"
-Mode = "Iterative"
-MathFunction = "randi_range(-10,10)"
-Var1 = 20.0
-var2 = 5.0
-metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
-
-[sub_resource type="Resource" id="Resource_ye7xa"]
-script = ExtResource("6_8b3ly")
-bullet = SubResource("Resource_dlv3y")
-shape = SubResource("Resource_bn020")
-Repeat = 5
-metadata/_custom_type_script = "uid://canqgpmdpsups"
+script = ExtResource("8_644yn")
+Set = Array[ExtResource("6_8b3ly")]([ExtResource("6_644yn"), ExtResource("7_8b3ly")])
+metadata/_custom_type_script = "uid://dugbojoidf3hy"
 
 [node name="RootScene" type="Node2D" unique_id=534867270]
 script = ExtResource("1_03604")
@@ -58,4 +25,4 @@ position = Vector2(622, 496)
 
 [node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
 position = Vector2(577, 33)
-attack = Array[ExtResource("6_8b3ly")]([SubResource("Resource_buaba"), SubResource("Resource_ye7xa")])
+attack = SubResource("Resource_w6mlc")

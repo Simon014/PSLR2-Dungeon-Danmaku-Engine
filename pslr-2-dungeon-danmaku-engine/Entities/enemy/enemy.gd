@@ -4,8 +4,7 @@ var movementvector
 var frametime
 var isdead
 
-@export var attack: Array[Attack]
-
+@export var attack: AttackSet
 #combat info
 var defence = 10
 var atk = 10
@@ -27,7 +26,7 @@ var TotalBullets = 0
 
 	
 func _on_atkcd_timeout() -> void:
-	$AttackExecutorManager.ExecuteNewAttack(attack)
+	$AttackExecutorManager.ExecuteNewAttack(attack.Set)
 	pass # Replace with function body.d
 		
 func _process(delta: float) -> void:

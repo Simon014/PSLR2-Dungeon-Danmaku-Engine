@@ -6,7 +6,6 @@ class_name Attack
 
 @export_group("Attack Settings")
 @export var Repeat: int = 1
-@export var Cost: int = 1
 @export var UseEntityStats: bool = false
 #bullet stats will use the combat stats of the enemy, where possible.
 #ie, damage, attack speed etc.

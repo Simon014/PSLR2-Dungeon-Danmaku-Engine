@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://btfgsqvadus6h"]
+
+[ext_resource type="Script" uid="uid://2qhm7aos5e31" path="res://DDEcore/AttackResources/Bullets/lazer.gd" id="1_tkc5k"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_hhgbe"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="3_qidpp"]
+
+[sub_resource type="Resource" id="Resource_rw22j"]
+script = ExtResource("1_tkc5k")
+width = 1.0
+friendly = true
+metadata/_custom_type_script = "uid://2qhm7aos5e31"
+
+[sub_resource type="Resource" id="Resource_w2hcu"]
+script = ExtResource("3_qidpp")
+Type = "Cartesian"
+Mode = "Iterative"
+MathFunction = "pow(x,2)"
+Var1 = 10.0
+var2 = 5.0
+var3 = Vector2(0, 1)
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("2_hhgbe")
+bullet = SubResource("Resource_rw22j")
+shape = SubResource("Resource_w2hcu")
+UseEntityStats = true
+metadata/_custom_type_script = "uid://canqgpmdpsups"
