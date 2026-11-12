@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://c2xlxk2c1vlin"]
+
+[ext_resource type="Script" uid="uid://8j14v5u27w31" path="res://DDEcore/AttackResources/Bullets/split.gd" id="1_p617h"]
+[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="2_3121s"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="3_mpsq0"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="4_n25fj"]
+
+[sub_resource type="Resource" id="Resource_xsk1b"]
+script = ExtResource("2_3121s")
+friendly = true
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_ngtlt"]
+script = ExtResource("1_p617h")
+splitBullet = SubResource("Resource_xsk1b")
+friendly = true
+metadata/_custom_type_script = "uid://8j14v5u27w31"
+
+[sub_resource type="Resource" id="Resource_loyjl"]
+script = ExtResource("4_n25fj")
+Mode = "Iterative"
+MathFunction = "x*36"
+Var1 = 0.0
+var2 = 9.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("3_mpsq0")
+bullet = SubResource("Resource_ngtlt")
+shape = SubResource("Resource_loyjl")
+Repeat = 4
+metadata/_custom_type_script = "uid://canqgpmdpsups"

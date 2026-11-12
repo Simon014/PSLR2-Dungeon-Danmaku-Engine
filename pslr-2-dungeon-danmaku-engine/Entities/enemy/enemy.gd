@@ -4,13 +4,13 @@ var movementvector
 var frametime
 var isdead
 
+@export var attack: AttackSet
 #combat info
 var defence = 10
 var atk = 10
 var health = 100
 var atkspeed = 100
 var Maxhealth = 100
-var attackhandler = coreDungeonEngine.AttackHandler.new()
 
 var PoisonRemaining = 0
 var SlowRemaining = 0
@@ -22,53 +22,17 @@ var AttackIterating = 0 #0 : no attack being iterated through. x : x attack bein
 var AttackCounter = 0
 var TotalBullets = 0
 
-func attackIterate():
-	AttackIterating = 1
-	TotalBullets = 10
-	AttackCounter = 0
-	pass
-
-func _ready() -> void:
-	pass
 	#this function will load current dungeon variables in RAM. for now it does nothing.
 
-func attack():
-	if AttackIterating != 0:
-		if AttackCounter == TotalBullets:
-			AttackIterating = 0
-			return
-	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
-	bullet.position = position
-	bullet.TTL = 5
-	bullet.speed = 0
-	bullet.acceleration = 0.1
-	bullet.split = 4
-	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
-	bullet.image = "DebugBullet2.png"
-	bullet.friendly = false
-	var splitter = load("res://Entities/bullets/bomb/Bullet.tscn").instantiate()
-	splitter.friendly = false
-	splitter.TTL = 3
-	
-	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
-	splitter.direction = Vector2.DOWN
-	bullet.splitinto = splitter
-	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.CSAttackIterate(self,position,bullet,AttackCounter - TotalBullets/2,func(x): return 1/pow(x,1/2) * 1/cos(2*x),10)
-	AttackCounter += 1
-	pass
 	
 func _on_atkcd_timeout() -> void:
-	if AttackIterating == 0:
-		attackIterate()
+	$AttackExecutorManager.ExecuteNewAttack(attack.Set)
 	pass # Replace with function body.d
 		
 func _process(delta: float) -> void:
 	frametime = delta
 
 func _on_tick_timeout() -> void:
-	if AttackIterating != 0:
-		attack()
 	if (health < 0):
 		isdead = true
 		health = 0
@@ -100,6 +64,7 @@ func _on_tick_timeout() -> void:
 		defence = defence
 		
 	for i in $DetectionArea.get_overlapping_bodies():
+		movementvector = Vector2.ZERO
 		if (i.friendly == true):
 			if (i.name.contains("Bullet")):
 				if position.distance_to(i.position) < 10:

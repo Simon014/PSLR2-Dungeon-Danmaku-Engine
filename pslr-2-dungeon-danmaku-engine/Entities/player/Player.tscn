@@ -1,6 +1,37 @@
 [gd_scene format=3 uid="uid://cgtr8wu6fmp36"]
 
 [ext_resource type="Script" uid="uid://dwyxv6qi88xxj" path="res://Entities/player/PlayerController.gd" id="1_41wu2"]
+[ext_resource type="PackedScene" uid="uid://brt5c0qqu1ajj" path="res://Entities/Managers/attack_executor_manager.tscn" id="2_fe6c5"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_yfiod"]
+[ext_resource type="Script" uid="uid://dugbojoidf3hy" path="res://DDEcore/AttackResources/Attacks/AttackSet.gd" id="3_13ous"]
+[ext_resource type="Resource" uid="uid://sulf3i1h7y32" path="res://Attacks/circle burst.tres" id="3_k5ofa"]
+[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="3_yxyux"]
+[ext_resource type="Resource" uid="uid://c2mu5wgdpfa4q" path="res://Attacks/bombsign.tres" id="4_3jmra"]
+[ext_resource type="Resource" uid="uid://cfctmlq1sb58v" path="res://Attacks/effect spiral.tres" id="5_k5ofa"]
+[ext_resource type="Resource" uid="uid://btfgsqvadus6h" path="res://Attacks/parabolic lazer down.tres" id="6_3jmra"]
+[ext_resource type="Resource" uid="uid://i4d7t1h1hb8n" path="res://Attacks/homing parabola.tres" id="8_0wq8u"]
+[ext_resource type="Resource" uid="uid://c2xlxk2c1vlin" path="res://Attacks/bomb split spiral.tres" id="9_k5ofa"]
+
+[sub_resource type="Resource" id="Resource_k5ofa"]
+script = ExtResource("3_yxyux")
+damage = 20.0
+friendly = true
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_yfiod"]
+script = ExtResource("3_13ous")
+Set = Array[ExtResource("2_yfiod")]([ExtResource("3_k5ofa")])
+metadata/_custom_type_script = "uid://dugbojoidf3hy"
+
+[sub_resource type="Resource" id="Resource_3jmra"]
+script = ExtResource("3_13ous")
+Set = Array[ExtResource("2_yfiod")]([ExtResource("4_3jmra"), ExtResource("5_k5ofa"), ExtResource("6_3jmra")])
+metadata/_custom_type_script = "uid://dugbojoidf3hy"
+
+[sub_resource type="Resource" id="Resource_cpa8t"]
+script = ExtResource("3_13ous")
+Set = Array[ExtResource("2_yfiod")]([ExtResource("8_0wq8u"), ExtResource("9_k5ofa")])
+metadata/_custom_type_script = "uid://dugbojoidf3hy"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mq5ly"]
 radius = 8.062258
@@ -11,6 +42,10 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" unique_id=217802643]
 collision_layer = 0
 script = ExtResource("1_41wu2")
+WeakAttackBullet = SubResource("Resource_k5ofa")
+attack1 = SubResource("Resource_yfiod")
+attack2 = SubResource("Resource_3jmra")
+attack3 = SubResource("Resource_cpa8t")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1181528564]
 offset_left = -8.0
@@ -34,5 +69,7 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1141911868]
 shape = SubResource("CircleShape2D_psduu")
+
+[node name="AttackExecutorManager" parent="." unique_id=743276342 instance=ExtResource("2_fe6c5")]
 
 [connection signal="timeout" from="ATKCD" to="." method="_on_atkcd_timeout"]

@@ -6,7 +6,7 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2yy7"]
-radius = 78.00641
+radius = 27.018513
 
 [node name="Partner" type="CharacterBody2D" unique_id=617075088]
 collision_layer = 0

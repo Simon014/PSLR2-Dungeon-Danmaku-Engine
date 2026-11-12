@@ -8,8 +8,8 @@ var direction
 @export var acceleration = 0
 
 #special configurations for this bullet
-@export var split = 4
-@export var splitinto = null
+@export var spliting = 4
+@export var splitinto: Bullet
 
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
@@ -29,7 +29,7 @@ func _ready() -> void:
 	$TTL.wait_time = TTL
 	$TTL.start()
 	modulate = color
-	$Image.texture = load("res://Entities/bullets/Images/" + image)
+	$Image.texture = load(image)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01 
@@ -38,26 +38,10 @@ func _process(delta: float) -> void:
 
 
 func _on_ttl_timeout() -> void:
-	var anglechange = 360 / split
+	var anglechange = 360 / spliting
 	var currentangle = 0
-	if (splitinto):
-		for i in range(split):
-			var splitter = splitinto.duplicate()
-			splitter.direction = Vector2.from_angle(deg_to_rad(currentangle))
-			splitter.position = position
-			splitter.friendly = friendly
-			get_parent().add_child(splitter)
-			currentangle += anglechange
-			
-		queue_free()
-	else:
-		for i in range(split):
-			var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
-			bullet.direction = Vector2.from_angle(deg_to_rad(currentangle))
-			bullet.position = position
-			bullet.friendly = friendly
-			get_parent().add_child(bullet)
-			currentangle += anglechange
-		queue_free()
-		pass
+	for i in range(spliting):
+		splitinto.Create(self, Vector2.from_angle(deg_to_rad(currentangle)))
+		currentangle += anglechange
+	queue_free()
 	pass # Replace with function body.

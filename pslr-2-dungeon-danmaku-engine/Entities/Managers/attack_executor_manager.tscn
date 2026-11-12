@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://brt5c0qqu1ajj"]
+
+[ext_resource type="Script" uid="uid://3ssxccj6ab2u" path="res://Entities/enemy/attack_executor_manager.gd" id="1_hc2fd"]
+
+[node name="AttackExecutorManager" type="Node" unique_id=743276342]
+script = ExtResource("1_hc2fd")
+
+[node name="Timer" type="Timer" parent="." unique_id=2015223805]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Attack" format=3 uid="uid://cfctmlq1sb58v"]
+
+[ext_resource type="Script" uid="uid://dy1ycf0gsxr8t" path="res://DDEcore/AttackResources/Bullets/effect.gd" id="1_e2v8w"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_fvdvd"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="3_l7evw"]
+
+[sub_resource type="Resource" id="Resource_wy33q"]
+script = ExtResource("1_e2v8w")
+appliedEffect = "poison"
+friendly = true
+metadata/_custom_type_script = "uid://dy1ycf0gsxr8t"
+
+[sub_resource type="Resource" id="Resource_dwo8s"]
+script = ExtResource("3_l7evw")
+Mode = "Iterative"
+MathFunction = "x*10"
+Var1 = 0.0
+var2 = 36.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[resource]
+script = ExtResource("2_fvdvd")
+bullet = SubResource("Resource_wy33q")
+shape = SubResource("Resource_dwo8s")
+Repeat = 2
+UseEntityStats = true
+metadata/_custom_type_script = "uid://canqgpmdpsups"

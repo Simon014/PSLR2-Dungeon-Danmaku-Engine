@@ -12,7 +12,7 @@ var direction
 #visual config
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet2.png"
-
+@export var explosionImage = ""
 #changed variables
 var scales
 @export var friendly = false
@@ -28,7 +28,8 @@ func _ready() -> void:
 	$explode.scale.x = scales/100
 	$explode.scale.y = scales/100
 	modulate = color
-	$Image.texture = load("res://Entities/bullets/Images/" + image)
+	$Image.texture = load(image)
+	$explode.texture = load(explosionImage)
 
 func _process(delta: float) -> void:
 	velocity -= velocity * friction * 0.01
@@ -44,8 +45,8 @@ func _on_ttl_timeout() -> void:
 	pass # Replace with function body.
 
 func iexploded():
-	return $explode.visible
-func _on_animation_player_current_animation_changed(name: StringName) -> void:
+	return $TTL.is_stopped()
+func _on_animation_player_current_animation_changed(name: String) -> void:
 	if name == "":
 		queue_free()
 	pass # Replace with function body.

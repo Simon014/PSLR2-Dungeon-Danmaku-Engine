@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var attackhandler = coreDungeonEngine.AttackHandler.new()
-
 #attack iterating stats. saved locally.
 var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
 var AttackCounter = 0
@@ -10,59 +8,51 @@ var frametime
 var isdead = false
 var atk = corePlayerVars.attack
 var defence = corePlayerVars.defence
+var speed = corePlayerVars.speed
+var atkspeed = corePlayerVars.attackspeed
+var attackExecutor
 
-func attackIterate():
-	AttackIterating = 1
-	TotalBullets = 100
-	AttackCounter = 0
+@export var WeakAttackBullet = Bullet.new()
+@export_group("SP attacks")
+
+@export var attack1: AttackSet
+@export var attack2: AttackSet
+@export var attack3: AttackSet
+
+func _ready() -> void:
+	attackExecutor = $AttackExecutorManager
+	WeakAttackBullet.damage = atk
+	WeakAttackBullet.speed = atkspeed
 	pass
 
-func attack():
-	if AttackIterating != 0:
-		if AttackCounter == TotalBullets:
-			AttackIterating = 0
-			return
-	var bullet = load("res://Entities/bullets/split/Bullet.tscn").instantiate()
-	bullet.position = position
-	bullet.TTL = 5
-	bullet.speed = 100
-	bullet.acceleration = 0.1
-	bullet.split = 4
-	bullet.color = Color(1.0, 0.564, 0.312, 1.0)
-	bullet.image = "DebugBullet2.png"
-	bullet.friendly = true
-	var splitter = load("res://Entities/bullets/homing/Bullet.tscn").instantiate()
-	splitter.friendly = false
-	splitter.TTL = 10
-	splitter.damage = 100
-	splitter.color = Color(1.0, 0.564, 0.312, 1.0)
-	splitter.direction = Vector2.DOWN
-	bullet.splitinto = splitter
-	bullet.direction = position.direction_to(get_global_mouse_position())
-	attackhandler.DRattackIterate(self, position, bullet, AttackCounter, func(x): return x * 10)
-	AttackCounter += 1
-	pass
+
+
+	
 
 func _input(event: InputEvent) -> void:
-	velocity = Input.get_vector("left", "right","up","down") * corePlayerVars.speed
+	if (corePlayerVars.SlowRemaining):
+		velocity = Input.get_vector("left", "right","up","down") * speed * coreGlobalConst.slowdownpower
+	else:
+		velocity = Input.get_vector("left", "right","up","down") * speed
 	if (Input.is_action_pressed("slowdown")):
 		velocity = velocity / 3
 	
 	if (Input.is_action_just_pressed("SPAttack1")):
-		if AttackIterating == 1:
-			pass
-		else:
-			attackIterate()
-	pass
-		
+		attackExecutor.ExecuteNewAttack(attack1.Set)
+	if (Input.is_action_just_pressed("SPAttack2")):
+		attackExecutor.ExecuteNewAttack(attack2.Set)
+	if (Input.is_action_just_pressed("SPAttack3")):
+		attackExecutor.ExecuteNewAttack(attack3.Set)
 func _process(delta: float) -> void:
 	move_and_slide()
-	print(corePlayerVars.Health)
 	corePlayerVars.position = position
 	frametime = delta
-
+	
 
 func _on_atkcd_timeout() -> void:
+	if (Input.is_action_pressed("shoot normal")):
+		WeakAttackBullet.Create(self, position.direction_to(get_global_mouse_position()))
+		pass
 	if (corePlayerVars.Health < 0):
 		queue_free()
 		get_tree().quit()
@@ -90,9 +80,6 @@ func _on_atkcd_timeout() -> void:
 		defence = corePlayerVars.defence * coreGlobalConst.lowdef
 	else:
 		defence = corePlayerVars.defence
-		
-	if AttackIterating != 0:
-		attack()
 	for i in $DetectionArea.get_overlapping_bodies():
 		if (i.friendly == false):
 			if (i.name.contains("Bullet")):
@@ -112,7 +99,7 @@ func _on_atkcd_timeout() -> void:
 						if (i.effect == "lower attack"):
 							corePlayerVars.AtkLowerRemaining = i.effectDuration
 			if (i.name.contains("Bomb")):
-				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == false:
+				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == true:
 					i.queue_free()
 					if (not isdead):
 						corePlayerVars.Health -= i.damage * i.explosionDamage	* (100-corePlayerVars.defence)/100

@@ -5,17 +5,18 @@ var frametime
 var isdead
 var defence = corePartnerVars.defence
 var atk = corePartnerVars.attack
+var atkspeed = corePartnerVars.attackspeed
 
 func attack(direction):
-	var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
-	bullet.speed = corePlayerVars.attackspeed
-	bullet.damage = 10 * atk
-	bullet.direction = direction
-	bullet.color = Color(1.0, 0.409, 0.926, 1.0)
-	bullet.position = position
-	bullet.TTL = 10
-	bullet.friendly = true
-	get_parent().add_child(bullet)
+	#var bullet = load("res://Entities/bullets/normal/Bullet.tscn").instantiate()
+	#bullet.speed = corePlayerVars.attackspeed
+	#bullet.damage = 10 * atk
+	#bullet.direction = direction
+	#bullet.color = Color(1.0, 0.409, 0.926, 1.0)
+	#bullet.position = position
+	#bullet.TTL = 10
+	#bullet.friendly = true
+	#get_parent().add_child(bullet)
 	pass
 		
 func _process(delta: float) -> void:
@@ -69,7 +70,7 @@ func _on_tick_timeout() -> void:
 	for i in $DetectionArea.get_overlapping_bodies():
 		if (i.friendly == false):
 			if (i.name.contains("Bullet")):
-				if position.distance_to(i.position) < 10:
+				if position.distance_to(i.position) < 7:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage	* (100-defence)/100
@@ -88,11 +89,11 @@ func _on_tick_timeout() -> void:
 							corePartnerVars.AtkLowerRemaining = i.effectDuration
 				movementvector -= position.direction_to(i.position) * 0.1/position.distance_to(i.position)
 			if (i.name.contains("Bomb")):
-				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == false:
+				if position.distance_to(i.position) < i.explosionRadius * 0.95 and i.iexploded() == true:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage * i.explosionDamage	* (100-defence)/100
-				elif position.distance_to(i.position) < 10:
+				elif position.distance_to(i.position) < 7:
 					i.queue_free()
 					if (not isdead):
 						corePartnerVars.Health -= i.damage	* (100-defence)/100

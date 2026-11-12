@@ -27,7 +27,7 @@ func _ready() -> void:
 	$Image.scale.x = scales/100
 	$Image.scale.y = scales/100
 	modulate = color
-	$Image.texture = load("res://Entities/bullets/Images/" + image)
+	$Image.texture = load(image)
 	
 func _process(delta: float) -> void:
 	velocity += direction * acceleration

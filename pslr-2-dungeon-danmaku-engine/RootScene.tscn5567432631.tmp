@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://dpkfjdt4va1fo"]
+
+[ext_resource type="Script" uid="uid://qpp2q3t74mg3" path="res://debug.gd" id="1_03604"]
+[ext_resource type="PackedScene" uid="uid://cgtr8wu6fmp36" path="res://Entities/player/Player.tscn" id="1_vw6t8"]
+[ext_resource type="Script" uid="uid://ci72njx1mc2l8" path="res://DDEcore/AttackResources/Bullets/homing.gd" id="3_644yn"]
+[ext_resource type="PackedScene" uid="uid://dmcsko740rpui" path="res://Entities/partner/Partner.tscn" id="3_y8vh0"]
+[ext_resource type="PackedScene" uid="uid://plarhlsmydmo" path="res://Entities/enemy/enemy.tscn" id="4_p6tge"]
+[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="5_cin2t"]
+[ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="5_u0r43"]
+[ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="6_8b3ly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8vh0"]
+size = Vector2(62, 756)
+
+[sub_resource type="Resource" id="Resource_eqcq4"]
+script = ExtResource("3_644yn")
+pathstart = 0.0
+speed = 0.0
+acceleration = 11.0
+friendly = true
+metadata/_custom_type_script = "uid://ci72njx1mc2l8"
+
+[sub_resource type="Resource" id="Resource_s6oar"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+Mode = "Iterative"
+var3 = Vector2(0, -1)
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_y6m3s"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_eqcq4")
+shape = SubResource("Resource_s6oar")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_w6mlc"]
+script = ExtResource("3_644yn")
+pathstart = 1.0
+acceleration = 11.0
+metadata/_custom_type_script = "uid://ci72njx1mc2l8"
+
+[sub_resource type="Resource" id="Resource_buaba"]
+script = ExtResource("5_u0r43")
+Type = "Cartesian"
+Mode = "Iterative"
+Var1 = 10.0
+var2 = 10.0
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_dlv3y"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_w6mlc")
+shape = SubResource("Resource_buaba")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[sub_resource type="Resource" id="Resource_8b3ly"]
+script = ExtResource("5_cin2t")
+metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+
+[sub_resource type="Resource" id="Resource_644yn"]
+script = ExtResource("5_u0r43")
+Type = "wait (var1 = waittime)"
+metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
+
+[sub_resource type="Resource" id="Resource_bn020"]
+script = ExtResource("6_8b3ly")
+bullet = SubResource("Resource_8b3ly")
+shape = SubResource("Resource_644yn")
+metadata/_custom_type_script = "uid://canqgpmdpsups"
+
+[node name="RootScene" type="Node2D" unique_id=534867270]
+script = ExtResource("1_03604")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1702970099]
+position = Vector2(103, -28)
+collision_layer = 16
+collision_mask = 16
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D3" unique_id=2095482167]
+offset_right = 40.00003
+offset_bottom = 717.101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=375589768]
+position = Vector2(21, 368)
+shape = SubResource("RectangleShape2D_y8vh0")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=572463688]
+position = Vector2(293, 755)
+rotation = -1.5707963
+collision_layer = 16
+collision_mask = 16
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D4" unique_id=1477911127]
+offset_right = 40.00003
+offset_bottom = 717.101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1801969212]
+position = Vector2(21, 368)
+shape = SubResource("RectangleShape2D_y8vh0")
+
+[node name="Player" parent="." unique_id=217802643 instance=ExtResource("1_vw6t8")]
+position = Vector2(569, 254)
+attack1 = SubResource("Resource_y6m3s")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=902222407]
+position = Vector2(1101, -28)
+collision_layer = 16
+collision_mask = 16
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2" unique_id=2051844777]
+offset_right = 40.00003
+offset_bottom = 717.101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2097403284]
+position = Vector2(21, 368)
+shape = SubResource("RectangleShape2D_y8vh0")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="." unique_id=2120918544]
+position = Vector2(293, -28)
+rotation = -1.5707963
+collision_layer = 16
+collision_mask = 16
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D5" unique_id=1438231505]
+offset_right = 40.00003
+offset_bottom = 717.101
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" unique_id=1263767008]
+position = Vector2(21, 368)
+shape = SubResource("RectangleShape2D_y8vh0")
+
+[node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
+position = Vector2(622, 496)
+
+[node name="Enemy" parent="." unique_id=76727699 instance=ExtResource("4_p6tge")]
+position = Vector2(577, 33)
+attack = Array[ExtResource("6_8b3ly")]([SubResource("Resource_dlv3y"), SubResource("Resource_bn020")])
+
+[node name="Enemy2" parent="." unique_id=1290338376 instance=ExtResource("4_p6tge")]
+position = Vector2(884, 97)

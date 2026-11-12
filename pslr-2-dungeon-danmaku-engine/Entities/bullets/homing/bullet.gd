@@ -23,7 +23,7 @@ func _ready() -> void:
 	$TTL.wait_time = TTL
 	$TTL.start()
 	modulate = color
-	$Image.texture = load("res://Entities/bullets/Images/" + image)
+	$Image.texture = load(image)
 	
 
 func _process(delta: float) -> void:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://plarhlsmydmo"]
 
 [ext_resource type="Script" uid="uid://bystr51qvwuyn" path="res://Entities/enemy/enemy.gd" id="1_r7hwg"]
+[ext_resource type="PackedScene" uid="uid://brt5c0qqu1ajj" path="res://Entities/Managers/attack_executor_manager.tscn" id="2_dyukl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_spuc2"]
 radius = 5.0
@@ -36,6 +37,8 @@ shape = SubResource("CircleShape2D_r7hwg")
 [node name="Tick" type="Timer" parent="." unique_id=549217632]
 wait_time = 0.05
 autostart = true
+
+[node name="AttackExecutorManager" parent="." unique_id=743276342 instance=ExtResource("2_dyukl")]
 
 [connection signal="timeout" from="ATKCD" to="." method="_on_atkcd_timeout"]
 [connection signal="timeout" from="Tick" to="." method="_on_tick_timeout"]
