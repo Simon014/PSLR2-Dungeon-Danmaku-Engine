@@ -17,6 +17,8 @@ var direction
 var scales
 @export var friendly = false
 
+#dodge
+var wasdodged = false
 
 
 func _ready() -> void:

@@ -37,7 +37,7 @@ metadata/_custom_type_script = "uid://dugbojoidf3hy"
 radius = 8.062258
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_psduu"]
-radius = 5.0
+radius = 14.035668
 
 [node name="Player" type="CharacterBody2D" unique_id=217802643]
 collision_layer = 0

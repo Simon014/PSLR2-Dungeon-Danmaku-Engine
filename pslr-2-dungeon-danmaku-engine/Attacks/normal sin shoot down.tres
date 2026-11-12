@@ -1,12 +1,14 @@
 [gd_resource type="Resource" script_class="Attack" format=3 uid="uid://bhb8l57yay325"]
 
-[ext_resource type="Script" uid="uid://c1kc2tulupqfb" path="res://DDEcore/AttackResources/Bullets/Bullet.gd" id="1_dshsu"]
+[ext_resource type="Script" uid="uid://2qhm7aos5e31" path="res://DDEcore/AttackResources/Bullets/lazer.gd" id="1_dshsu"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="2_4okjb"]
 [ext_resource type="Script" uid="uid://dw6tlb0c7mt7y" path="res://DDEcore/AttackResources/AttackShapes/ShapeBase.gd" id="3_0pqub"]
 
-[sub_resource type="Resource" id="Resource_644yn"]
+[sub_resource type="Resource" id="Resource_4okjb"]
 script = ExtResource("1_dshsu")
-metadata/_custom_type_script = "uid://c1kc2tulupqfb"
+width = 0.2
+damage = 100.0
+metadata/_custom_type_script = "uid://2qhm7aos5e31"
 
 [sub_resource type="Resource" id="Resource_w6mlc"]
 script = ExtResource("3_0pqub")
@@ -17,7 +19,7 @@ metadata/_custom_type_script = "uid://dw6tlb0c7mt7y"
 
 [resource]
 script = ExtResource("2_4okjb")
-bullet = SubResource("Resource_644yn")
+bullet = SubResource("Resource_4okjb")
 shape = SubResource("Resource_w6mlc")
 Repeat = 20
 metadata/_custom_type_script = "uid://canqgpmdpsups"

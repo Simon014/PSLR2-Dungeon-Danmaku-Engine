@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var color = Color(255,255,255,0.2)
 
 var friendly
+#dodge
+var wasdodged = false
 
 func _ready() -> void:
 	rotate(direction.angle() - PI/2)

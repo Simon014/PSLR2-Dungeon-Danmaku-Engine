@@ -82,6 +82,10 @@ func _on_atkcd_timeout() -> void:
 		defence = corePlayerVars.defence
 	for i in $DetectionArea.get_overlapping_bodies():
 		if (i.friendly == false):
+			if (not i.name.contains("Effect")):
+				if (i.wasdodged == false):
+					i.wasdodged = true
+					coreDungeonStats.dodges += 1
 			if (i.name.contains("Bullet")):
 				if position.distance_to(i.position) < 10:
 					i.queue_free()

@@ -12,6 +12,9 @@ var direction
 
 @export var friendly = false
 
+#dodge
+var wasdodged = false
+
 func _ready() -> void:
 	name = "Bullet"
 	velocity = direction * speed 

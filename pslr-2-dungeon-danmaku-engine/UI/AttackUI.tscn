@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dojsgihopqne7"]
+
+[ext_resource type="Script" uid="uid://dgrsqop765hoc" path="res://UI/attack_ui.gd" id="1_axk72"]
+
+[node name="AttackUI" type="Control" unique_id=1295030909]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_axk72")
+metadata/_edit_use_anchors_ = true
+
+[node name="UIupdate" type="Timer" parent="." unique_id=1399615107]
+wait_time = 0.05
+autostart = true
+
+[node name="HPBar" type="ColorRect" parent="." unique_id=1141060010]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -196.0
+offset_top = -30.0
+offset_right = 197.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="HPBar" unique_id=1906917814]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -11.5
+offset_right = 191.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(191, 11)
+color = Color(0.033355236, 0.7312668, 0, 1)
+
+[node name="dodges" type="RichTextLabel" parent="." unique_id=1906556728]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -71.0
+offset_right = 20.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[connection signal="timeout" from="UIupdate" to="." method="_on_u_iupdate_timeout"]

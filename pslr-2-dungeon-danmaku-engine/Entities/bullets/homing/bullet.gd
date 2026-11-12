@@ -15,7 +15,8 @@ var timeSinceload = 0.0
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
 @export var friendly = false
-
+#dodge
+var wasdodged = false
 
 func _ready() -> void:
 	name = "Bullet"

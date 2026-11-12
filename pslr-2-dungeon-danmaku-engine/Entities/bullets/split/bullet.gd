@@ -14,6 +14,8 @@ var direction
 @export var color = Color(0.709, 0.0, 0.574, 1.0)
 @export var image = "DebugBullet.png"
 @export var friendly = false
+#dodge
+var wasdodged = false
 
 """
 TODO : ONCE ALL OTHER BULLETS ARE DONE, INCLUDING LAZERS, GO BACK AND MODIFY

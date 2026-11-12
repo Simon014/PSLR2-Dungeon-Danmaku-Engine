@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://bhb8l57yay325" path="res://Attacks/normal sin shoot down.tres" id="6_644yn"]
 [ext_resource type="Resource" uid="uid://of2bf5lly7br" path="res://Attacks/exploding rough wall down.tres" id="7_8b3ly"]
 [ext_resource type="Script" uid="uid://dugbojoidf3hy" path="res://DDEcore/AttackResources/Attacks/AttackSet.gd" id="8_644yn"]
+[ext_resource type="PackedScene" uid="uid://dojsgihopqne7" path="res://UI/AttackUI.tscn" id="9_644yn"]
 
 [sub_resource type="Resource" id="Resource_w6mlc"]
 script = ExtResource("8_644yn")
@@ -19,6 +20,15 @@ script = ExtResource("1_03604")
 
 [node name="Player" parent="." unique_id=217802643 instance=ExtResource("1_vw6t8")]
 position = Vector2(569, 254)
+
+[node name="AttackUI" parent="Player" unique_id=1295030909 instance=ExtResource("9_644yn")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_top = 291.0
+offset_bottom = 291.0
+grow_vertical = 0
 
 [node name="Partner" parent="." unique_id=617075088 instance=ExtResource("3_y8vh0")]
 position = Vector2(622, 496)
