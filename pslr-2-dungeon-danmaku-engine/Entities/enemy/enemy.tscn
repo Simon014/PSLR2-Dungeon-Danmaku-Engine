@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://plarhlsmydmo"]
 
 [ext_resource type="Script" uid="uid://bystr51qvwuyn" path="res://Entities/enemy/enemy.gd" id="1_r7hwg"]
+[ext_resource type="Script" uid="uid://b4ka7j614u4ck" path="res://DDEcore/EntityResources/EntityStats.gd" id="2_aeaae"]
 [ext_resource type="PackedScene" uid="uid://brt5c0qqu1ajj" path="res://Entities/Managers/attack_executor_manager.tscn" id="2_dyukl"]
-[ext_resource type="Script" uid="uid://b05rtfi1ad7t2" path="res://DDEcore/DungeonResources/EntityStats.gd" id="2_hl3xi"]
 [ext_resource type="Script" uid="uid://canqgpmdpsups" path="res://DDEcore/AttackResources/Attacks/Attack.gd" id="3_aeaae"]
 [ext_resource type="Resource" uid="uid://c2xlxk2c1vlin" path="res://Attacks/bomb split spiral.tres" id="4_ngxdo"]
 [ext_resource type="Resource" uid="uid://of2bf5lly7br" path="res://Attacks/exploding rough wall down.tres" id="5_jl61a"]
 [ext_resource type="Script" uid="uid://dugbojoidf3hy" path="res://DDEcore/AttackResources/Attacks/AttackSet.gd" id="6_ax46p"]
 
-[sub_resource type="Resource" id="Resource_uc588"]
-script = ExtResource("2_hl3xi")
-metadata/_custom_type_script = "uid://b05rtfi1ad7t2"
+[sub_resource type="Resource" id="Resource_ngxdo"]
+script = ExtResource("2_aeaae")
+metadata/_custom_type_script = "uid://b4ka7j614u4ck"
 
 [sub_resource type="Resource" id="Resource_d8v1c"]
 script = ExtResource("6_ax46p")
@@ -26,7 +26,7 @@ radius = 61.008198
 [node name="Enemy" type="CharacterBody2D" unique_id=76727699]
 collision_layer = 0
 script = ExtResource("1_r7hwg")
-Stats = SubResource("Resource_uc588")
+Stats = SubResource("Resource_ngxdo")
 attack = SubResource("Resource_d8v1c")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1841251827]
