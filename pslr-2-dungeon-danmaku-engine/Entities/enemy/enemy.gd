@@ -3,7 +3,7 @@ extends CharacterBody2D
 var movementvector
 var frametime
 var isdead
-
+@export var Stats: EntityStats
 @export var attack: AttackSet
 #combat info
 var defence = 10
@@ -17,12 +17,13 @@ var SlowRemaining = 0
 var DefLowerRemaining = 0
 var AtkLowerRemaining = 0
 
-#attack iterating stats. saved locally.
-var AttackIterating = 0 #0 : no attack being iterated through. x : x attack being iterated through.
-var AttackCounter = 0
-var TotalBullets = 0
-
 	#this function will load current dungeon variables in RAM. for now it does nothing.
+func _ready() -> void:
+	var defence = Stats.defence
+	var atk = Stats.atkDamage
+	var health = Stats.Health
+	var Maxhealth = health
+	var atkspeed = Stats.atkSpeed
 
 	
 func _on_atkcd_timeout() -> void:

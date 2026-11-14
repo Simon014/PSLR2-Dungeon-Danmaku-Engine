@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b1cprtbkcgujh"]
+
+[node name="Spawnpoint" type="Node2D" unique_id=912768669]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1393109426]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+color = Color(0.7029272, 0.38834772, 0.63395023, 1)
